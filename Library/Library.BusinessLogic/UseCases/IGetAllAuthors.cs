@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.DataAccess.Data
+namespace Library.BusinessLogic.UseCases
 {
-    public interface IRepository
+    internal interface IGetAllAuthors
     {
-        public Task<IEnumerable<AutorRead>> GetAuthorsAll();
+        public Task<IEnumerable<AutorRead>> GetAllAutors();
     }
 }

@@ -1,11 +1,48 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Library.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Library.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Library.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Library.DataAccess.dll": {}
+        }
+      },
+      "Library.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Library.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Library.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Library.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Library.DataAccess/Library.DataAccess.csproj",
+      "msbuildProject": "../Library.DataAccess/Library.DataAccess.csproj"
+    },
+    "Library.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Library.Domain/Library.Domain.csproj",
+      "msbuildProject": "../Library.Domain/Library.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Library.DataAccess >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Ноутбук\\.nuget\\packages\\": {},
@@ -38,7 +75,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Программирование\\Projects\\Library\\Library\\Library.DataAccess\\Library.DataAccess.csproj": {
+              "projectPath": "D:\\Программирование\\Projects\\Library\\Library\\Library.DataAccess\\Library.DataAccess.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
