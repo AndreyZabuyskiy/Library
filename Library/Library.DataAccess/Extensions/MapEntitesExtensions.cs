@@ -19,5 +19,15 @@ namespace Library.DataAccess.Extensions
                 LastName = author.LastName
             };
         }
+
+        public static BookRead AsBookRead(this Book book)
+        {
+            return new BookRead()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Price = book.Price
+            };
+        }
     }
 }

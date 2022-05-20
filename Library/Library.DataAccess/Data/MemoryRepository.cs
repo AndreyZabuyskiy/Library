@@ -27,6 +27,28 @@ namespace Library.DataAccess.Data
             }
         };
 
+        private static List<Book> _books = new List<Book>()
+        {
+            new Book()
+            {
+                Id = Guid.NewGuid(),
+                Author = _authors[0],
+                Title = "Преступление и наказание",
+                Description = "Преступление и наказание описание",
+                Price = 170,
+                NumberOfPages = 672,
+            },
+            new Book()
+            {
+                Id = Guid.NewGuid(),
+                Author = _authors[1],
+                Title = "Анна Каренина",
+                Description = "Анна Каренина описание",
+                Price = 260,
+                NumberOfPages = 864,
+            },
+        };
+
         public async Task<IEnumerable<AuthorRead>> GetAuthorsAll()
         {
             return await Task.Run(() =>
@@ -39,6 +61,21 @@ namespace Library.DataAccess.Data
                 }
 
                 return authors;
+            });
+        }
+
+        public async Task<IEnumerable<BookRead>> GetBooksAll()
+        {
+            return await Task.Run(() => 
+            {
+                var books = new List<BookRead>();
+
+                foreach (var book in _books)
+                {
+                    books.Add(book.AsBookRead());
+                }
+
+                return books;
             });
         }
     }
