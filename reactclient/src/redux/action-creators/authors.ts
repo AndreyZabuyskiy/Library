@@ -1,6 +1,7 @@
 import { AuthorsAction, AuthorsActionTypes } from "../../types/autors"
 import { Dispatch } from "react";
 import axios from "axios";
+import { BooksAction, BooksActionTypes } from "../../types/books";
 
 export const fetchAuthors = () => {
   return async (dispatch: Dispatch<AuthorsAction>) => {
