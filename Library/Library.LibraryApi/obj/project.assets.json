@@ -72,6 +72,42 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Library.BusinessLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Library.DataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Library.BusinessLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Library.BusinessLogic.dll": {}
+        }
+      },
+      "Library.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Library.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Library.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Library.DataAccess.dll": {}
+        }
+      },
+      "Library.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Library.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Library.Domain.dll": {}
+        }
       }
     }
   },
@@ -200,10 +236,26 @@
         "swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Library.BusinessLogic/1.0.0": {
+      "type": "project",
+      "path": "../Library.BusinessLogic/Library.BusinessLogic.csproj",
+      "msbuildProject": "../Library.BusinessLogic/Library.BusinessLogic.csproj"
+    },
+    "Library.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Library.DataAccess/Library.DataAccess.csproj",
+      "msbuildProject": "../Library.DataAccess/Library.DataAccess.csproj"
+    },
+    "Library.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Library.Domain/Library.Domain.csproj",
+      "msbuildProject": "../Library.Domain/Library.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Library.BusinessLogic >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
@@ -238,7 +290,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Программирование\\Projects\\Library\\Library\\Library.BusinessLogic\\Library.BusinessLogic.csproj": {
+              "projectPath": "D:\\Программирование\\Projects\\Library\\Library\\Library.BusinessLogic\\Library.BusinessLogic.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

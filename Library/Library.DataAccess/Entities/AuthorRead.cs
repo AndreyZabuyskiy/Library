@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.DataAccess.Entities
 {
-    public class AutorRead
+    public class AuthorRead
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

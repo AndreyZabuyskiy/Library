@@ -1,0 +1,17 @@
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.BusinessLogic.deps.json
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.BusinessLogic.dll
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.BusinessLogic.pdb
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.DataAccess.dll
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.Domain.dll
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.DataAccess.pdb
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\bin\Debug\net6.0\Library.Domain.pdb
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.csproj.AssemblyReference.cache
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.AssemblyInfoInputs.cache
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.AssemblyInfo.cs
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.csproj.CopyComplete
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.dll
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\refint\Library.BusinessLogic.dll
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\Library.BusinessLogic.pdb
+D:\Программирование\Projects\Library\Library\Library.BusinessLogic\obj\Debug\net6.0\ref\Library.BusinessLogic.dll

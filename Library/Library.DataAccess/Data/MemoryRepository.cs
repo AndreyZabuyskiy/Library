@@ -27,11 +27,11 @@ namespace Library.DataAccess.Data
             }
         };
 
-        public async Task<IEnumerable<AutorRead>> GetAuthorsAll()
+        public async Task<IEnumerable<AuthorRead>> GetAuthorsAll()
         {
             return await Task.Run(() =>
             {
-                var authors = new List<AutorRead>();
+                var authors = new List<AuthorRead>();
 
                 foreach (var author in _authors)
                 {

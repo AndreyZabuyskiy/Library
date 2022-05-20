@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Library.BusinessLogic.UseCases
 {
-    internal interface IGetAllAuthors
+    public interface IGetAllAuthors
     {
-        public Task<IEnumerable<AutorRead>> GetAllAutors();
+        public Task<IEnumerable<AuthorRead>> GetAllAutors();
     }
 }

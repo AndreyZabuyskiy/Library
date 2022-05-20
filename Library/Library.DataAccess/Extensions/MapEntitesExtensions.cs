@@ -10,9 +10,9 @@ namespace Library.DataAccess.Extensions
 {
     internal static class MapEntitesExtensions
     {
-        public static AutorRead AsAuthorRead(this Author author)
+        public static AuthorRead AsAuthorRead(this Author author)
         {
-            return new AutorRead()
+            return new AuthorRead()
             {
                 Id = author.Id,
                 FirstName = author.FirstName,

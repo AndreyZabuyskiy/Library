@@ -18,7 +18,7 @@ namespace Library.BusinessLogic.Services
             _repository = repository;
         }
 
-        public Task<IEnumerable<AutorRead>> GetAllAutors()
+        public Task<IEnumerable<AuthorRead>> GetAllAutors()
         {
             return _repository.GetAuthorsAll();
         }

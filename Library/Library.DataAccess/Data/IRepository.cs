@@ -9,6 +9,6 @@ namespace Library.DataAccess.Data
 {
     public interface IRepository
     {
-        public Task<IEnumerable<AutorRead>> GetAuthorsAll();
+        public Task<IEnumerable<AuthorRead>> GetAuthorsAll();
     }
 }
