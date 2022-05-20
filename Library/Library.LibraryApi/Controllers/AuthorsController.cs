@@ -1,5 +1,6 @@
 ﻿using Library.BusinessLogic.UseCases;
-using Library.DataAccess.Entities;
+using Library.LibraryApi.ResponseApi;
+using Library.LibraryApi.ResponseApi.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.LibraryApi.Controllers
@@ -16,9 +17,15 @@ namespace Library.LibraryApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AuthorRead>>> GetAuthors()
+        public async Task<ActionResult<GetAllAuthorsResponse>> GetAuthors()
         {
-            return Ok(await _getAllAuthors.GetAllAutors());
+            var response = new GetAllAuthorsResponse()
+            {
+                Status = StatusResponse.Success,
+                Data = await _getAllAuthors.GetAllAutors()
+            };
+
+            return Ok(response);
         }
     }
 }

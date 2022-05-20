@@ -1,11 +1,6 @@
 ﻿using Library.BusinessLogic.UseCases;
 using Library.DataAccess.Data;
 using Library.DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.BusinessLogic.Services
 {
@@ -18,9 +13,9 @@ namespace Library.BusinessLogic.Services
             _repository = repository;
         }
 
-        public Task<IEnumerable<AuthorRead>> GetAllAutors()
+        public async Task<IEnumerable<AuthorRead>> GetAllAutors()
         {
-            return _repository.GetAuthorsAll();
+            return await _repository.GetAuthorsAll();
         }
     }
 }
