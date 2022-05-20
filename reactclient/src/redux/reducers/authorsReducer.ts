@@ -1,9 +1,5 @@
 import { AuthorsAction, AuthorsActionTypes, IAuthorsState } from "../../types/autors";
 
-const FETCH_AUTHORS = 'FETCH_AUTHORS';
-const FETCH_AUTHORS_SUCCESS = 'FETCH_AUTHORS_SUCCESS';
-const FETCH_AUTHORS_ERROR = 'FETCH_AUTHORS_ERROR';
-
 const initialState: IAuthorsState = {
   authors: [],
   loading: false,
