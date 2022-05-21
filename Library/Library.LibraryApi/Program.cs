@@ -19,6 +19,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(
 
 builder.Services.AddScoped<IRepository, MemoryRepository>();
 builder.Services.AddScoped<IGetAllAuthors, AuthorsService>();
+builder.Services.AddScoped<IGetAuthorById, AuthorsService>();
 builder.Services.AddScoped<IGetAllBooks, BookService>();
 
 var app = builder.Build();

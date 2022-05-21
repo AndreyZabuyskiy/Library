@@ -1,9 +1,10 @@
-﻿namespace Library.DataAccess.Entities
+﻿namespace Library.BusinessLogic.Dtos
 {
-    public class AuthorRead
+    public class AuthorViewDto
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public IEnumerable<BookOverviewInfoDto> Books { get; set; }
     }
 }

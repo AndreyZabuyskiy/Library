@@ -24,5 +24,27 @@ namespace Library.BusinessLogic.Extensions
                 Price = book.Price,
             };
         }
+
+        public static AuthorViewDto AsAuthorViewDto(this AuthorView author)
+        {
+            var books = new List<BookOverviewInfoDto>();
+
+            foreach (var book in author.Books)
+            {
+                books.Add(new BookOverviewInfoDto()
+                {
+                    Id = book.Id,
+                    Title = book.Title
+                });
+            }
+
+            return new AuthorViewDto()
+            {
+                Id = author.Id,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                Books = books
+            };
+        }
     }
 }

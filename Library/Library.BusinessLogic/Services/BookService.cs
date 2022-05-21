@@ -1,4 +1,5 @@
 ﻿using Library.BusinessLogic.Dtos;
+using Library.BusinessLogic.Extensions;
 using Library.BusinessLogic.UseCases;
 using Library.DataAccess.Data;
 
@@ -20,12 +21,7 @@ namespace Library.BusinessLogic.Services
 
             foreach(var book in books)
             {
-                booksDto.Add(new BookReadDto()
-                {
-                    Id = book.Id,
-                    Title = book.Title,
-                    Price = book.Price
-                });
+                booksDto.Add(book.AsBookReadDto());
             }
 
             return booksDto;

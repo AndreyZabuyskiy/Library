@@ -44,6 +44,37 @@ namespace Library.DataAccess.Data
             },
         };
 
+        public async Task<AuthorView> GetAuthorById(Guid id)
+        {
+            return await Task.Run(() =>
+            {
+                var author = _authors.FirstOrDefault(a => a.Id == id);
+                var books = new List<BookOverviewInfo>();
+
+                foreach (var book in _books)
+                {
+                    if(book.Author.Id == author.Id)
+                    {
+                        books.Add(new BookOverviewInfo()
+                        {
+                            Id = book.Id,
+                            Title = book.Title
+                        });
+                    }
+                }
+
+                var authorView = new AuthorView()
+                {
+                    Id = author.Id,
+                    FirstName = author.FirstName,
+                    LastName = author.LastName,
+                    Books = books
+                };
+
+                return authorView;
+            });
+        }
+
         public async Task<IEnumerable<AuthorRead>> GetAuthorsAll()
         {
             return await Task.Run(() =>

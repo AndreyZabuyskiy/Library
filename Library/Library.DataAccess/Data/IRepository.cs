@@ -6,5 +6,6 @@ namespace Library.DataAccess.Data
     {
         public Task<IEnumerable<AuthorRead>> GetAuthorsAll();
         public Task<IEnumerable<BookRead>> GetBooksAll();
+        public Task<AuthorView> GetAuthorById(Guid id);
     }
 }

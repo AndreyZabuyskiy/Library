@@ -1,10 +1,11 @@
 ﻿using Library.BusinessLogic.Dtos;
+using Library.BusinessLogic.Extensions;
 using Library.BusinessLogic.UseCases;
 using Library.DataAccess.Data;
 
 namespace Library.BusinessLogic.Services
 {
-    public class AuthorsService : IGetAllAuthors
+    public class AuthorsService : IGetAllAuthors, IGetAuthorById
     {
         private readonly IRepository _repository;
 
@@ -20,15 +21,16 @@ namespace Library.BusinessLogic.Services
 
             foreach(var author in authors)
             {
-                authorsDto.Add(new AuthorReadDto()
-                {
-                    Id = author.Id,
-                    FirstName = author.FirstName,
-                    LastName = author.LastName
-                });
+                authorsDto.Add(author.AsAuthorReadDto());
             }
 
             return authorsDto;
+        }
+
+        public async Task<AuthorViewDto> GetAuthorById(Guid id)
+        {
+            var author = await _repository.GetAuthorById(id);
+            return author.AsAuthorViewDto();
         }
     }
 }

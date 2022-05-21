@@ -10,10 +10,12 @@ namespace Library.LibraryApi.Controllers
     public class AuthorsController : ControllerBase
     {
         private readonly IGetAllAuthors _getAllAuthors;
+        private readonly IGetAuthorById _getAuthorById;
 
-        public AuthorsController(IGetAllAuthors getAllAuthors)
+        public AuthorsController(IGetAllAuthors getAllAuthors, IGetAuthorById getAuthorById)
         {
             _getAllAuthors = getAllAuthors;
+            _getAuthorById = getAuthorById;
         }
 
         [HttpGet]
@@ -26,6 +28,18 @@ namespace Library.LibraryApi.Controllers
             };
 
             return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<GetAuthorById>> GetAuthorById(Guid id)
+        {
+            var response = new GetAuthorById()
+            {
+                Status = StatusResponse.Success,
+                Data = await _getAuthorById.GetAuthorById(id)
+            };
+
+            return response;
         }
     }
 }
