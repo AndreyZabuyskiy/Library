@@ -32,6 +32,7 @@ namespace Library.DataAccess.Data
                 Description = "Преступление и наказание описание",
                 Price = 170,
                 NumberOfPages = 672,
+                YearOfPublication = 1866
             },
             new Book()
             {
@@ -41,6 +42,7 @@ namespace Library.DataAccess.Data
                 Description = "Анна Каренина описание",
                 Price = 260,
                 NumberOfPages = 864,
+                YearOfPublication = 1878
             },
         };
 
@@ -87,6 +89,30 @@ namespace Library.DataAccess.Data
                 }
 
                 return authors;
+            });
+        }
+
+        public Task<BookView> GetBookById(Guid id)
+        {
+            return Task.Run(() =>
+            {
+                var book = _books.FirstOrDefault(b => b.Id == id);
+
+                return new BookView()
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Price = book.Price,
+                    NumberOfPages = book.NumberOfPages,
+                    YearOfPublication = book.YearOfPublication,
+                    Author = new AuthorOverviewInfo()
+                    {
+                        Id = book.Author.Id,
+                        FirstName = book.Author.FirstName,
+                        LastName = book.Author.LastName
+                    }
+                };
             });
         }
 

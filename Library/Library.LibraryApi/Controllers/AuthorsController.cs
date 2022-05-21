@@ -31,9 +31,9 @@ namespace Library.LibraryApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetAuthorById>> GetAuthorById(Guid id)
+        public async Task<ActionResult<GetAuthorByIdResponse>> GetAuthorById(Guid id)
         {
-            var response = new GetAuthorById()
+            var response = new GetAuthorByIdResponse()
             {
                 Status = StatusResponse.Success,
                 Data = await _getAuthorById.GetAuthorById(id)

@@ -2,9 +2,9 @@
 
 namespace Library.LibraryApi.ResponseApi.Responses
 {
-    public class GetAuthorById : IResponseApi<AuthorViewDto>
+    public class GetBookByIdResponse : IResponseApi<BookViewDto>
     {
         public StatusResponse Status { get; set; }
-        public AuthorViewDto Data { get; set; }
+        public BookViewDto Data { get; set; }
     }
 }

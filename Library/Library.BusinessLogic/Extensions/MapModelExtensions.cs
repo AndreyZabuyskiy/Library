@@ -46,5 +46,24 @@ namespace Library.BusinessLogic.Extensions
                 Books = books
             };
         }
+
+        public static BookViewDto AsBookViewDto(this BookView book)
+        {
+            return new BookViewDto()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Description = book.Description,
+                Price = book.Price,
+                NumberOfPages = book.NumberOfPages,
+                YearOfPublication = book.YearOfPublication,
+                Author = new AuthorOverviewInfoDto()
+                {
+                    Id = book.Author.Id,
+                    FirstName = book.Author.FirstName,
+                    LastName = book.Author.LastName
+                }
+            };
+        }
     }
 }

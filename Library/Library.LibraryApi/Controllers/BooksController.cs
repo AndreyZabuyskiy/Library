@@ -9,22 +9,33 @@ namespace Library.LibraryApi.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IGetAllBooks _getAllBooks;
+        private readonly IGetBookById _getBookById;
 
-        public BooksController(IGetAllBooks getAllBooks)
+        public BooksController(IGetAllBooks getAllBooks, IGetBookById getBookById)
         {
             _getAllBooks = getAllBooks;
+            _getBookById = getBookById;
+            
         }
 
         [HttpGet]
         public async Task<ActionResult<GetAllBooksResponse>> GetAllBooks()
         {
-            var response = new GetAllBooksResponse()
+            return new GetAllBooksResponse()
             {
                 Status = ResponseApi.StatusResponse.Success,
                 Data = await _getAllBooks.GetAllBooks()
             };
+        }
 
-            return response;
+        [HttpGet("{id}")]
+        public async Task<ActionResult<GetBookByIdResponse>> GetBookById(Guid id)
+        {
+            return new GetBookByIdResponse()
+            {
+                Status = ResponseApi.StatusResponse.Success,
+                Data = await _getBookById.GetBookById(id)
+            };
         }
     }
 }

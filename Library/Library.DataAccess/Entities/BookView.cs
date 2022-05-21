@@ -1,14 +1,13 @@
-﻿namespace Library.Domain
+﻿namespace Library.DataAccess.Entities
 {
-    public class Book
+    public class BookView
     {
         public Guid Id { get; set; }
-        public Author Author { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int NumberOfPages { get; set; }
         public decimal Price { get; set; }
         public int YearOfPublication { get; set; }
-        public DateTime DateAddedToDb { get; set; }
+        public AuthorOverviewInfo Author { get; set; }
     }
 }
