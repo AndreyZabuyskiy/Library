@@ -23,7 +23,7 @@ const Authors: React.FC = () => {
     <div>
       <p> {author.id} </p>
       <p> {author.firstName} </p>
-      <p> { author.lastName} </p>
+      <p> {author.lastName} </p>
       <hr />
     </div>
   );

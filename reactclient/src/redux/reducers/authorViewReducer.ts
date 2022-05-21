@@ -1,7 +1,7 @@
 import { IAuthorViewState, AuthorViewAction, AuthorActionTypes } from "../../types/authorView";
 
 const initialState: IAuthorViewState = {
-  author: null,
+  author: undefined,
   loading: false,
   error: null
 }
@@ -12,7 +12,7 @@ export const authorViewReducer = (state = initialState, action: AuthorViewAction
       return {
         loading: true,
         error: null,
-        author: null
+        author: undefined
       };
     
     case AuthorActionTypes.FETCH_AUTHOR_SUCCESS:
@@ -26,7 +26,7 @@ export const authorViewReducer = (state = initialState, action: AuthorViewAction
       return {
         loading: false,
         error: action.payload,
-        author: null
+        author: undefined
       };
     
       default:
