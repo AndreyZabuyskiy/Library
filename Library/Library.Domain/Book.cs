@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Library.Domain
+﻿namespace Library.Domain
 {
     public class Book
     {

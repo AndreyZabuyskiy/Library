@@ -1,9 +1,9 @@
-﻿using Library.DataAccess.Entities;
+﻿using Library.BusinessLogic.Dtos;
 
 namespace Library.BusinessLogic.UseCases
 {
     public interface IGetAllBooks
     {
-        public Task<IEnumerable<BookRead>> GetAllBooks();
+        public Task<IEnumerable<BookReadDto>> GetAllBooks();
     }
 }

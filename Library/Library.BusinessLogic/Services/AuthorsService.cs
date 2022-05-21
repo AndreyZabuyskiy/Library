@@ -1,6 +1,6 @@
-﻿using Library.BusinessLogic.UseCases;
+﻿using Library.BusinessLogic.Dtos;
+using Library.BusinessLogic.UseCases;
 using Library.DataAccess.Data;
-using Library.DataAccess.Entities;
 
 namespace Library.BusinessLogic.Services
 {
@@ -13,9 +13,22 @@ namespace Library.BusinessLogic.Services
             _repository = repository;
         }
 
-        public async Task<IEnumerable<AuthorRead>> GetAllAutors()
+        public async Task<IEnumerable<AuthorReadDto>> GetAllAutors()
         {
-            return await _repository.GetAuthorsAll();
+            var authors = await _repository.GetAuthorsAll();
+            var authorsDto = new List<AuthorReadDto>();
+
+            foreach(var author in authors)
+            {
+                authorsDto.Add(new AuthorReadDto()
+                {
+                    Id = author.Id,
+                    FirstName = author.FirstName,
+                    LastName = author.LastName
+                });
+            }
+
+            return authorsDto;
         }
     }
 }

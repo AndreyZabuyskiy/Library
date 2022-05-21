@@ -11,10 +11,7 @@ export const fetchAuthors = () => {
       });
       
       const response = await axios.get('https://localhost:7068/api/Authors');
-      
-      setTimeout(() => {
-        dispatch({type: AuthorsActionTypes.FETCH_AUTHORS_SUCCESS, payload: response.data.data});
-      }, 500);
+      dispatch({type: AuthorsActionTypes.FETCH_AUTHORS_SUCCESS, payload: response.data.data});
     } catch (e) {
       dispatch({
         type: AuthorsActionTypes.FETCH_AUTHORS_ERROR,

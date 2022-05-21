@@ -1,6 +1,6 @@
-﻿namespace Library.Domain
+﻿namespace Library.BusinessLogic.Dtos
 {
-    public class Author
+    public class AuthorReadDto
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
