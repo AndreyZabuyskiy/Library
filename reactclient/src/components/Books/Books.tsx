@@ -28,7 +28,43 @@ const Books: React.FC = () => {
     </div>
   );
 
-  return <div> { bookElements } </div>
+  return (
+    <div className="container">
+      <div className="col d-flex flex-column justify-content-center align-items-center">
+        {renderBooksTable()}
+      </div>
+    </div>
+  )
+
+  function renderBooksTable() {
+    return (
+      <div className="table-responsive mt-5">
+        <table className="table table-bordered border-dark">
+          <thead>
+            <tr>
+              <th scope='col'>BookId (PK)</th>
+              <th scope='col'>Title</th>
+              <th scope='col'>Price</th>
+              <th scope='col'>GRUD Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map(book => (
+              <tr>
+                <th scope="row"> { book.id } </th>
+                <td> { book.title } </td>
+                <td> { book.price } </td>
+                <td>
+                  <button className="btn btn-dark btn-lg mx-3 my-3">Update</button>
+                  <button className="btn btn-secondary btn-lg">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
 export default Books;
