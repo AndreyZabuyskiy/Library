@@ -77,7 +77,7 @@ namespace Library.DataAccess.Data
             });
         }
 
-        public async Task<bool> GetAuthorDelete(Guid id)
+        public async Task<bool> DeleteAuthorAsync(Guid id)
         {
             return await Task.Run(() =>
             {
@@ -139,6 +139,16 @@ namespace Library.DataAccess.Data
 
                 return books;
             });
+        }
+
+        public async Task<bool> DeleteBookAsync(Guid id)
+        {
+            return await Task.Run(() =>
+            {
+                var book = _books.FirstOrDefault(b => b.Id == id);
+                _books.Remove(book);
+                return true;
+            }); 
         }
     }
 }

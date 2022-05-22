@@ -5,13 +5,18 @@ using Library.DataAccess.Data;
 
 namespace Library.BusinessLogic.Services
 {
-    public class BookService : IGetAllBooks, IGetBookById
+    public class BookService : IGetAllBooks, IGetBookById, IDeleteBook
     {
         private readonly IRepository _repository;
 
         public BookService(IRepository repository)
         {
             _repository = repository;
+        }
+
+        public Task<bool> DeleteBookAsync(Guid id)
+        {
+            return _repository.DeleteBookAsync(id);
         }
 
         public async Task<IEnumerable<BookReadDto>> GetAllBooks()

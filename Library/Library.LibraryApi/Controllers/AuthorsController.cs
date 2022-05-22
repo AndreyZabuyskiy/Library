@@ -11,12 +11,12 @@ namespace Library.LibraryApi.Controllers
     {
         private readonly IGetAllAuthors _getAllAuthors;
         private readonly IGetAuthorById _getAuthorById;
-        private readonly IAuthorDelete _authorDelete;
+        private readonly IDeleteAuthor _authorDelete;
 
         public AuthorsController(
             IGetAllAuthors getAllAuthors,
             IGetAuthorById getAuthorById,
-            IAuthorDelete authorDelete)
+            IDeleteAuthor authorDelete)
         {
             _getAllAuthors = getAllAuthors;
             _getAuthorById = getAuthorById;
@@ -53,7 +53,7 @@ namespace Library.LibraryApi.Controllers
             var response = new DeleteAuthorResponse()
             {
                 Status = StatusResponse.Success,
-                Data = await _authorDelete.AuthorDeleteAsync(id)
+                Data = await _authorDelete.DeleteAuthorAsync(id)
             };
 
             return Ok(response);

@@ -21,10 +21,11 @@ builder.Services.AddScoped<IRepository, MemoryRepository>();
 
 builder.Services.AddScoped<IGetAllAuthors, AuthorsService>();
 builder.Services.AddScoped<IGetAuthorById, AuthorsService>();
-builder.Services.AddScoped<IAuthorDelete, AuthorsService>();
+builder.Services.AddScoped<IDeleteAuthor, AuthorsService>();
 
 builder.Services.AddScoped<IGetAllBooks, BookService>();
 builder.Services.AddScoped<IGetBookById, BookService>();
+builder.Services.AddScoped<IDeleteBook, BookService>();
 
 var app = builder.Build();
 
