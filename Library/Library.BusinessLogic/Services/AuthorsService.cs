@@ -5,13 +5,18 @@ using Library.DataAccess.Data;
 
 namespace Library.BusinessLogic.Services
 {
-    public class AuthorsService : IGetAllAuthors, IGetAuthorById
+    public class AuthorsService : IGetAllAuthors, IGetAuthorById, IAuthorDelete
     {
         private readonly IRepository _repository;
 
         public AuthorsService(IRepository repository)
         {
             _repository = repository;
+        }
+
+        public Task<bool> AuthorDeleteAsync(Guid id)
+        {
+            return _repository.GetAuthorDelete(id);
         }
 
         public async Task<IEnumerable<AuthorReadDto>> GetAllAutors()

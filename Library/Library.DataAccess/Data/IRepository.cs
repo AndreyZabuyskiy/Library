@@ -8,5 +8,6 @@ namespace Library.DataAccess.Data
         public Task<IEnumerable<BookRead>> GetBooksAll();
         public Task<AuthorView> GetAuthorById(Guid id);
         public Task<BookView> GetBookById(Guid id);
+        public Task<bool> GetAuthorDelete(Guid id);
     }
 }

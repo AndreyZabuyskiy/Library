@@ -77,6 +77,16 @@ namespace Library.DataAccess.Data
             });
         }
 
+        public async Task<bool> GetAuthorDelete(Guid id)
+        {
+            return await Task.Run(() =>
+            {
+                var author = _authors.FirstOrDefault(a => a.Id == id);
+                _authors.Remove(author);
+                return true;
+            });
+        }
+
         public async Task<IEnumerable<AuthorRead>> GetAuthorsAll()
         {
             return await Task.Run(() =>

@@ -11,11 +11,16 @@ namespace Library.LibraryApi.Controllers
     {
         private readonly IGetAllAuthors _getAllAuthors;
         private readonly IGetAuthorById _getAuthorById;
+        private readonly IAuthorDelete _authorDelete;
 
-        public AuthorsController(IGetAllAuthors getAllAuthors, IGetAuthorById getAuthorById)
+        public AuthorsController(
+            IGetAllAuthors getAllAuthors,
+            IGetAuthorById getAuthorById,
+            IAuthorDelete authorDelete)
         {
             _getAllAuthors = getAllAuthors;
             _getAuthorById = getAuthorById;
+            _authorDelete = authorDelete;
         }
 
         [HttpGet]
@@ -37,6 +42,18 @@ namespace Library.LibraryApi.Controllers
             {
                 Status = StatusResponse.Success,
                 Data = await _getAuthorById.GetAuthorById(id)
+            };
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<DeleteAuthorResponse>> DeleteAuthorAsync(Guid id)
+        {
+            var response = new DeleteAuthorResponse()
+            {
+                Status = StatusResponse.Success,
+                Data = await _authorDelete.AuthorDeleteAsync(id)
             };
 
             return Ok(response);
