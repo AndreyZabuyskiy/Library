@@ -21,21 +21,25 @@ namespace Library.LibraryApi.Controllers
         [HttpGet]
         public async Task<ActionResult<GetAllBooksResponse>> GetAllBooks()
         {
-            return new GetAllBooksResponse()
+            var response = new GetAllBooksResponse()
             {
                 Status = ResponseApi.StatusResponse.Success,
                 Data = await _getAllBooks.GetAllBooks()
             };
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<GetBookByIdResponse>> GetBookById(Guid id)
         {
-            return new GetBookByIdResponse()
+            var response = new GetBookByIdResponse()
             {
                 Status = ResponseApi.StatusResponse.Success,
                 Data = await _getBookById.GetBookById(id)
             };
+
+            return Ok(response);
         }
     }
 }

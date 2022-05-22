@@ -39,7 +39,7 @@ namespace Library.LibraryApi.Controllers
                 Data = await _getAuthorById.GetAuthorById(id)
             };
 
-            return response;
+            return Ok(response);
         }
     }
 }
