@@ -29,6 +29,13 @@ export const authorReducer = (state = initialState, action: AuthorsAction): IAut
           authors: []
         };
 
+      case AuthorsActionTypes.FETCH_AUTHORS_DELETE:
+        return {
+          loading: false,
+          error: null,
+          authors: []
+        };
+
     default:
       return state;
   }

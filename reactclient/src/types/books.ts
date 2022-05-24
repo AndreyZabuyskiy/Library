@@ -7,7 +7,8 @@ export interface IBooksState {
 export enum BooksActionTypes {
   FETCH_BOOKS = "FETCH_BOOKS",
   FETCH_BOOKS_SUCCESS = "FETCH_BOOKS_SUCCESS",
-  FETCH_BOOKS_ERROR = "FETCH_BOOKS_ERROR"
+  FETCH_BOOKS_ERROR = "FETCH_BOOKS_ERROR",
+  FETCH_DELETE = "FETCH_DELETE"
 }
 
 export interface FetchBooksAction {
@@ -24,4 +25,7 @@ export interface FetchBooksErrorAction {
   payload: string
 }
 
-export type BooksAction = FetchBooksAction | FetchBooksSuccessAction | FetchBooksErrorAction
+
+export type BooksAction = FetchBooksAction
+  | FetchBooksSuccessAction
+  | FetchBooksErrorAction

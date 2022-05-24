@@ -1,4 +1,5 @@
 ﻿using Library.BusinessLogic.UseCases;
+using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,10 @@ namespace Library.LibraryApi.Controllers
         private readonly IGetBookById _getBookById;
         private readonly IDeleteBook _deleteBook;
 
-        public BooksController(IGetAllBooks getAllBooks, IGetBookById getBookById, IDeleteBook deleteBook)
+        public BooksController(
+            IGetAllBooks getAllBooks,
+            IGetBookById getBookById,
+            IDeleteBook deleteBook)
         {
             _getAllBooks = getAllBooks;
             _getBookById = getBookById;
@@ -24,7 +28,7 @@ namespace Library.LibraryApi.Controllers
         {
             var response = new GetAllBooksResponse()
             {
-                Status = ResponseApi.StatusResponse.Success,
+                Status = StatusResponse.Success,
                 Data = await _getAllBooks.GetAllBooks()
             };
 
@@ -36,7 +40,7 @@ namespace Library.LibraryApi.Controllers
         {
             var response = new GetBookByIdResponse()
             {
-                Status = ResponseApi.StatusResponse.Success,
+                Status = StatusResponse.Success,
                 Data = await _getBookById.GetBookById(id)
             };
 

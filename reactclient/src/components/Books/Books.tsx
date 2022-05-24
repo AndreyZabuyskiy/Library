@@ -19,14 +19,9 @@ const Books: React.FC = () => {
     return <h1>{error}</h1>
   }
 
-  const bookElements = books.map(book => 
-    <div>
-      <p>{book.id}</p>
-      <p>{book.title}</p>
-      <p>{book.price}</p>
-      <hr />
-    </div>
-  );
+  type ButtonProps = {
+    handleClick: () => void
+  }
 
   return (
     <div className="container">
