@@ -27,7 +27,14 @@ export const booksReducer = (state = initialState, action: BooksAction): IBooksS
         loading: false,
         error: action.payload,
         books: []
-      }
+      };
+
+    case BooksActionTypes.FETCH_BOOK_DELETE:
+      return {
+        loading: true,
+        error: null,
+        books: []
+      };
 
     default:
       return state;

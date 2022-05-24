@@ -8,7 +8,7 @@ export enum BooksActionTypes {
   FETCH_BOOKS = "FETCH_BOOKS",
   FETCH_BOOKS_SUCCESS = "FETCH_BOOKS_SUCCESS",
   FETCH_BOOKS_ERROR = "FETCH_BOOKS_ERROR",
-  FETCH_DELETE = "FETCH_DELETE"
+  FETCH_BOOK_DELETE = "FETCH_DELETE"
 }
 
 export interface FetchBooksAction {
@@ -25,7 +25,12 @@ export interface FetchBooksErrorAction {
   payload: string
 }
 
+export interface FetchDeleteAction {
+  type: BooksActionTypes.FETCH_BOOK_DELETE
+}
+
 
 export type BooksAction = FetchBooksAction
   | FetchBooksSuccessAction
   | FetchBooksErrorAction
+  | FetchDeleteAction

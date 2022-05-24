@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTypesSelector } from "../../hooks/useTypeSelector";
-import { fetchBooks } from "../../redux/action-creators/books";
+import { fetchBooks, fetchDeleteBook } from "../../redux/action-creators/books";
 
 const Books: React.FC = () => {
   const { books, error, loading } = useTypesSelector(state => state.books);
@@ -51,7 +51,7 @@ const Books: React.FC = () => {
                 <td> { book.price } </td>
                 <td>
                   <button className="btn btn-dark btn-lg mx-3 my-3">Update</button>
-                  <button className="btn btn-secondary btn-lg">Delete</button>
+                  <button onClick={(id: any) => dispatch(fetchDeleteBook(book.id))} className="btn btn-secondary btn-lg">Delete</button>
                 </td>
               </tr>
             ))}
