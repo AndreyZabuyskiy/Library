@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { useTypesSelector } from "../../hooks/useTypeSelector";
 import { fetchBooks, fetchDeleteBook } from "../../redux/action-creators/books";
 
@@ -50,7 +51,9 @@ const Books: React.FC = () => {
                 <td> { book.title } </td>
                 <td> { book.price } </td>
                 <td>
-                  <button className="btn btn-dark btn-lg mx-3 my-3">Update</button>
+                  <button className="btn btn-dark btn-lg mx-3 my-3">
+                    <Link to={`/books/${book.id}`}>Update</Link>
+                  </button>
                   <button onClick={(id: any) => dispatch(fetchDeleteBook(book.id))} className="btn btn-secondary btn-lg">Delete</button>
                 </td>
               </tr>
