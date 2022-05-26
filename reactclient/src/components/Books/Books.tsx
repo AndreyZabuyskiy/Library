@@ -51,11 +51,14 @@ const Books: React.FC = () => {
                 <td> { book.title } </td>
                 <td> { book.price } </td>
                 <td>
-                  <button className="btn btn-dark btn-lg mx-3 my-3">
+                  <button className="btn btn-dark btn-lg">
                     <Link to={`/books/${book.id}`}>Update</Link>
                   </button>
                   <button onClick={(id: any) => dispatch(fetchDeleteBook(book.id))} 
-                    className="btn btn-secondary btn-lg">Delete</button>
+                    className="btn btn-secondary btn-lg mx-3 my-3">Delete</button>
+                  <Link className="btn btn-info btn-lg" role="button" to={`/books/${book.id}`}>
+                    View
+                  </Link>
                 </td>
               </tr>
             ))}

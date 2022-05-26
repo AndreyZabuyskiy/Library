@@ -52,7 +52,9 @@ const Authors: React.FC = () => {
                     <button onClick={(id: any) => dispatch(fetchDeleteAuthors(author.id))} className="btn btn-secondary btn-lg mx-3 my-3">
                       Delete
                     </button>
-                    <Link className="btn btn-info btn-lg" role="button" to={`/authors/${author.id}`}>View</Link>
+                    <Link className="btn btn-info btn-lg" role="button" to={`/authors/${author.id}`}>
+                      View
+                    </Link>
                   </td>
               </tr>
               ))

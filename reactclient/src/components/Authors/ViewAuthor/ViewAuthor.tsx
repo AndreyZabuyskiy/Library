@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchAuthorView } from "../../../redux/action-creators/authorView";
 
-const SingleAuthor: React.FC = () => {
+const ViewAuthor: React.FC = () => {
   const {author, loading, error} = useTypesSelector(state => state.authorView);
   const dispatch = useDispatch();
   const {id} = useParams();
@@ -34,4 +34,4 @@ const SingleAuthor: React.FC = () => {
   );
 }
 
-export default SingleAuthor;
+export default ViewAuthor;
