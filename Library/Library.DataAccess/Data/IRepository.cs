@@ -10,5 +10,7 @@ namespace Library.DataAccess.Data
         public Task<BookView> GetBookById(Guid id);
         public Task<bool> DeleteAuthorAsync(Guid id);
         public Task<bool> DeleteBookAsync(Guid id);
+        public Task<int> GetNumberOfBooksByAuthorIdAsync(Guid id);
+        public Task<AuthorRead> CreateAuthorAsync(AuthorCreate authorCreate);
     }
 }

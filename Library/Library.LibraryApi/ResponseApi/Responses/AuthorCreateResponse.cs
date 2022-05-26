@@ -2,9 +2,9 @@
 
 namespace Library.LibraryApi.ResponseApi.Responses
 {
-    public class GetAllAuthorsResponse : IResponseApi<IEnumerable<AuthorReadDto>>
+    public class AuthorCreateResponse : IResponseApi<AuthorReadDto>
     {
         public StatusResponse Status { get; set; }
-        public IEnumerable<AuthorReadDto> Data { get; set; }
+        public AuthorReadDto Data { get; set; }
     }
 }

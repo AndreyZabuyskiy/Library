@@ -5,7 +5,7 @@ using Library.DataAccess.Data;
 
 namespace Library.BusinessLogic.Services
 {
-    public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor
+    public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor, ICreateAuthor
     {
         private readonly IRepository _repository;
 
@@ -14,9 +14,11 @@ namespace Library.BusinessLogic.Services
             _repository = repository;
         }
 
-        public Task<bool> DeleteAuthorAsync(Guid id)
+        public async Task<AuthorReadDto> CreateAuthorAsync(AuthorCreateDto author)
         {
-            return _repository.DeleteAuthorAsync(id);
+            var authorCreated = await _repository.CreateAuthorAsync(author.AsAuthorCreate());
+            var count = await _repository.GetNumberOfBooksByAuthorIdAsync(authorCreated.Id);
+            return authorCreated.AsAuthorReadDto(count);
         }
 
         public async Task<IEnumerable<AuthorReadDto>> GetAllAutors()
@@ -24,12 +26,18 @@ namespace Library.BusinessLogic.Services
             var authors = await _repository.GetAuthorsAll();
             var authorsDto = new List<AuthorReadDto>();
 
-            foreach(var author in authors)
+            foreach (var author in authors)
             {
-                authorsDto.Add(author.AsAuthorReadDto());
+                var count = await _repository.GetNumberOfBooksByAuthorIdAsync(author.Id);
+                authorsDto.Add(author.AsAuthorReadDto(count));
             }
 
             return authorsDto;
+        }
+
+        public Task<bool> DeleteAuthorAsync(Guid id)
+        {
+            return _repository.DeleteAuthorAsync(id);
         }
 
         public async Task<AuthorViewDto> GetAuthorById(Guid id)

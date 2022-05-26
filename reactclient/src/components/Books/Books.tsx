@@ -38,7 +38,6 @@ const Books: React.FC = () => {
         <table className="table table-bordered border-dark">
           <thead>
             <tr>
-              <th scope='col'>BookId (PK)</th>
               <th scope='col'>Title</th>
               <th scope='col'>Price</th>
               <th scope='col'>GRUD Operations</th>
@@ -47,8 +46,7 @@ const Books: React.FC = () => {
           <tbody>
             {books.map(book => (
               <tr>
-                <th scope="row"> { book.id } </th>
-                <td> { book.title } </td>
+                <td scope="row"> { book.title } </td>
                 <td> { book.price } </td>
                 <td>
                   <button className="btn btn-dark btn-lg">

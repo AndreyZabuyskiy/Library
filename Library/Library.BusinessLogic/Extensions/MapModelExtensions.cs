@@ -5,13 +5,14 @@ namespace Library.BusinessLogic.Extensions
 {
     internal static class MapModelExtensions
     {
-        public static AuthorReadDto AsAuthorReadDto(this AuthorRead author)
+        public static AuthorReadDto AsAuthorReadDto(this AuthorRead author, int count)
         {
             return new AuthorReadDto
             {
                 Id = author.Id,
                 FirstName = author.FirstName,
                 LastName = author.LastName,
+                NumberOfBooks = count
             };
         }
 
@@ -63,6 +64,15 @@ namespace Library.BusinessLogic.Extensions
                     FirstName = book.Author.FirstName,
                     LastName = book.Author.LastName
                 }
+            };
+        }
+
+        public static AuthorCreate AsAuthorCreate(this AuthorCreateDto author)
+        {
+            return new AuthorCreate
+            {
+                FirstName = author.FirstName,
+                LastName = author.LastName
             };
         }
     }

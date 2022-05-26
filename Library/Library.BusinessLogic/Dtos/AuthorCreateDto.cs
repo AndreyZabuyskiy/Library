@@ -1,10 +1,8 @@
 ﻿namespace Library.BusinessLogic.Dtos
 {
-    public class AuthorReadDto
+    public class AuthorCreateDto
     {
-        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int NumberOfBooks { get; set; }
     }
 }

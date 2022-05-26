@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import Authors from './components/Authors/ViewAuthor';
+import Authors from './components/Authors/Authors';
 import Books from './components/Books/Books';
 import ViewAuthor from './components/Authors/ViewAuthor/ViewAuthor';
 import ViewBook from './components/Books/ViewBook/ViewBook';

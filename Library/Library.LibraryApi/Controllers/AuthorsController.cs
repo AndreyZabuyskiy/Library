@@ -1,4 +1,5 @@
-﻿using Library.BusinessLogic.UseCases;
+﻿using Library.BusinessLogic.Dtos;
+using Library.BusinessLogic.UseCases;
 using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +13,18 @@ namespace Library.LibraryApi.Controllers
         private readonly IGetAllAuthors _getAllAuthors;
         private readonly IGetAuthorById _getAuthorById;
         private readonly IDeleteAuthor _authorDelete;
+        private readonly ICreateAuthor _authorCreate;
 
         public AuthorsController(
             IGetAllAuthors getAllAuthors,
             IGetAuthorById getAuthorById,
-            IDeleteAuthor authorDelete)
+            IDeleteAuthor authorDelete,
+            ICreateAuthor createAuthor)
         {
             _getAllAuthors = getAllAuthors;
             _getAuthorById = getAuthorById;
             _authorDelete = authorDelete;
+            _authorCreate = createAuthor;
         }
 
         [HttpGet]
@@ -42,6 +46,18 @@ namespace Library.LibraryApi.Controllers
             {
                 Status = StatusResponse.Success,
                 Data = await _getAuthorById.GetAuthorById(id)
+            };
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AuthorCreateResponse>> CreateAuthorAsync(AuthorCreateDto authorCreate)
+        {
+            var response = new AuthorCreateResponse()
+            {
+                Status = StatusResponse.Success,
+                Data = await _authorCreate.CreateAuthorAsync(authorCreate)
             };
 
             return Ok(response);

@@ -13,14 +13,6 @@ export const ViewBook: React.FC = () => {
     dispatch(fetchBookView(id));
   }, [id]);
 
-  if(loading){
-    return <h1>Загрузка ошибки...</h1>
-  }
-
-  if(error){
-    return <h1>{error}</h1>
-  }
-
   const styleAuthorName =
   {
     backgroundColor: 'blue'

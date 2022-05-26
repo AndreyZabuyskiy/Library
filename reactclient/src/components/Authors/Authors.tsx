@@ -34,9 +34,9 @@ const Authors: React.FC = () => {
         <table className="table table-bordered border-dark">
           <thead>
             <tr>
-              <th scope='col'>AuthorId (PK)</th>
               <th scope='col'>FirstName</th>
               <th scope='col'>LastName</th>
+              <th scope='col'>Number of books</th>
               <th scope='col'>GRUD Operations</th>
             </tr>
           </thead>
@@ -44,9 +44,9 @@ const Authors: React.FC = () => {
             {
               authors.map(author => (
                 <tr>
-                  <th scope="row"> { author.id } </th>
-                  <td> { author.firstName } </td>
+                  <td scope="row"> { author.firstName } </td>
                   <td> { author.lastName } </td>
+                  <td> { author.numberOfBooks } </td>
                   <td>
                     <button className="btn btn-dark btn-lg">Update</button>
                     <button onClick={(id: any) => dispatch(fetchDeleteAuthors(author.id))} className="btn btn-secondary btn-lg mx-3 my-3">

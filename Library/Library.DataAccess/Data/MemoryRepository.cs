@@ -44,6 +44,16 @@ namespace Library.DataAccess.Data
                 NumberOfPages = 864,
                 YearOfPublication = 1878
             },
+            new Book()
+            {
+                Id = Guid.NewGuid(),
+                Author = _authors[1],
+                Title = "Братья Карамасовы",
+                Description = "Братья Карамасовы описание",
+                Price = 128,
+                NumberOfPages = 840,
+                YearOfPublication = 1880
+            },
         };
 
         public async Task<AuthorView> GetAuthorById(Guid id)
@@ -149,6 +159,41 @@ namespace Library.DataAccess.Data
                 _books.Remove(book);
                 return true;
             }); 
+        }
+
+        public async Task<int> GetNumberOfBooksByAuthorIdAsync(Guid id)
+        {
+            return await Task.Run(() =>
+            {
+                var count = 0;
+
+                foreach(var book in _books)
+                {
+                    if(book.Author.Id == id)
+                    {
+                        count++;
+                    }
+                }
+
+                return count;
+            });
+        }
+
+        public async Task<AuthorRead> CreateAuthorAsync(AuthorCreate authorCreate)
+        {
+            return await Task.Run(() =>
+            {
+                var author = new Author()
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = authorCreate.FirstName,
+                    LastName = authorCreate.LastName
+                };
+
+                _authors.Add(author);
+
+                return author.AsAuthorRead();
+            });
         }
     }
 }
