@@ -3,6 +3,7 @@ import Authors from './components/Authors/Authors';
 import Books from './components/Books/Books';
 import ViewAuthor from './components/Authors/ViewAuthor/ViewAuthor';
 import ViewBook from './components/Books/ViewBook/ViewBook';
+import CreateAuthor from './components/Authors/CreateAuthor/CreateAuthor';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/books' element={<Books />} />
         <Route path='/authors/:id' element={<ViewAuthor />} />
         <Route path='/books/:id' element={<ViewBook />} />
+        <Route path="/create-author" element={<CreateAuthor />} />
       </Routes>
     </div>
   );
