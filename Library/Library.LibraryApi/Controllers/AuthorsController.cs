@@ -14,17 +14,20 @@ namespace Library.LibraryApi.Controllers
         private readonly IGetAuthorById _getAuthorById;
         private readonly IDeleteAuthor _authorDelete;
         private readonly ICreateAuthor _authorCreate;
+        private readonly IUpdateAuthor _authorUpdate;
 
         public AuthorsController(
             IGetAllAuthors getAllAuthors,
             IGetAuthorById getAuthorById,
             IDeleteAuthor authorDelete,
-            ICreateAuthor createAuthor)
+            ICreateAuthor createAuthor,
+            IUpdateAuthor updateAuthor)
         {
             _getAllAuthors = getAllAuthors;
             _getAuthorById = getAuthorById;
             _authorDelete = authorDelete;
             _authorCreate = createAuthor;
+            _authorUpdate = updateAuthor;
         }
 
         [HttpGet]
@@ -73,6 +76,18 @@ namespace Library.LibraryApi.Controllers
             };
 
             return Ok(response);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UpdateAuthorResponse>> UpdateAuthorAsync(Guid id, AuthorUpdateDto updateAuthor)
+        {
+            var response = new UpdateAuthorResponse()
+            {
+                Status = StatusResponse.Success,
+                Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor)
+            };
+
+            return response;
         }
     }
 }

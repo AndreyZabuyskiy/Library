@@ -5,7 +5,7 @@ using Library.DataAccess.Data;
 
 namespace Library.BusinessLogic.Services
 {
-    public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor, ICreateAuthor
+    public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor, ICreateAuthor, IUpdateAuthor
     {
         private readonly IRepository _repository;
 
@@ -44,6 +44,13 @@ namespace Library.BusinessLogic.Services
         {
             var author = await _repository.GetAuthorById(id);
             return author.AsAuthorViewDto();
+        }
+
+        public async Task<AuthorReadDto> UpdateAuthorAsync(Guid id, AuthorUpdateDto author)
+        {
+            var authorUpdate = await _repository.UpdateAuthorAsync(id, author.AsAuthorUpdate());
+            var count = await _repository.GetNumberOfBooksByAuthorIdAsync(authorUpdate.Id);
+            return authorUpdate.AsAuthorReadDto(count);
         }
     }
 }

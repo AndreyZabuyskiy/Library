@@ -195,5 +195,18 @@ namespace Library.DataAccess.Data
                 return author.AsAuthorRead();
             });
         }
+
+        public async Task<AuthorRead> UpdateAuthorAsync(Guid id, AuthorUpdate authorUpdate)
+        {
+            return await Task.Run(() =>
+            {
+                var author = _authors.FirstOrDefault(a => a.Id == id);
+
+                author.FirstName = authorUpdate.FirstName;
+                author.LastName = authorUpdate.LastName;
+
+                return author.AsAuthorRead();
+            });
+        }
     }
 }

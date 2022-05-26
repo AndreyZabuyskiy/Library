@@ -75,5 +75,14 @@ namespace Library.BusinessLogic.Extensions
                 LastName = author.LastName
             };
         }
+
+        public static AuthorUpdate AsAuthorUpdate(this AuthorUpdateDto author)
+        {
+            return new AuthorUpdate
+            {
+                FirstName = author.FirstName,
+                LastName = author.LastName
+            };
+        }
     }
 }
