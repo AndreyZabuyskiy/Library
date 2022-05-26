@@ -41,19 +41,22 @@ const Authors: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {authors.map(author => (
-              <tr>
-              <th scope="row"> { author.id } </th>
-              <td> { author.firstName } </td>
-              <td> { author.lastName } </td>
-              <td>
-                <button className="btn btn-dark btn-lg mx-3 my-3">
-                  <Link to={`/authors/${author.id}`}>Update</Link>
-                </button>
-                <button onClick={(id: any) => dispatch(fetchDeleteAuthors(author.id))} className="btn btn-secondary btn-lg">Delete</button>
-              </td>
-            </tr>
-            ))}
+            {
+              authors.map(author => (
+                <tr>
+                  <th scope="row"> { author.id } </th>
+                  <td> { author.firstName } </td>
+                  <td> { author.lastName } </td>
+                  <td>
+                    <button className="btn btn-dark btn-lg">Update</button>
+                    <button onClick={(id: any) => dispatch(fetchDeleteAuthors(author.id))} className="btn btn-secondary btn-lg mx-3 my-3">
+                      Delete
+                    </button>
+                    <Link className="btn btn-info btn-lg" role="button" to={`/authors/${author.id}`}>View</Link>
+                  </td>
+              </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>

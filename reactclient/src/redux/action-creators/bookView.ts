@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import axios from "axios";
 import { BookActionTypes, BookViewAction } from "../../types/bookView";
 
-export const fetchBookView = (id: any) => {
+export function fetchBookView (id: any): any {
   return async (dispatch: Dispatch<BookViewAction>) => {
     try{
       dispatch({

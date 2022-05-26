@@ -2,7 +2,7 @@ import { AuthorViewAction, AuthorActionTypes } from '../../types/authorView';
 import { Dispatch } from "react";
 import axios from "axios";
 
-export const fetchAuthorView = (id: any) => {
+export function fetchAuthorView (id: any): any {
   return async (dispatch: Dispatch<AuthorViewAction>) => {
     try{
       dispatch({

@@ -10,7 +10,7 @@ export const SingleBook: React.FC = () => {
   const {id} = useParams();
 
   useEffect(() => {
-    dispatch(fetchBookView(id))
+    dispatch(fetchBookView(id));
   }, [id]);
 
   if(loading){

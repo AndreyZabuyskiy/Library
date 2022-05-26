@@ -2,7 +2,7 @@ import { AuthorsAction, AuthorsActionTypes } from "../../types/autors"
 import { Dispatch } from "react";
 import axios from "axios";
 
-export const fetchAuthors = () => {
+export function fetchAuthors (): any {
   return async (dispatch: Dispatch<AuthorsAction>) => {
     try {
       dispatch({
@@ -20,7 +20,7 @@ export const fetchAuthors = () => {
   }
 }
 
-export const fetchDeleteAuthors = (id: any) => {
+export function fetchDeleteAuthors (id: any): any {
   return async (dispatch: Dispatch<AuthorsAction>) => {
     try{
       dispatch({

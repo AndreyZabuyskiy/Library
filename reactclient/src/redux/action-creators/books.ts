@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import axios from "axios";
 import { BooksAction, BooksActionTypes } from "../../types/books";
 
-export const fetchBooks = () => {
+export function fetchBooks (): any {
   return async (dispatch: Dispatch<BooksAction>) => {
     try {
       dispatch({
@@ -20,7 +20,7 @@ export const fetchBooks = () => {
   }
 }
 
-export const fetchDeleteBook = (id: any) => {
+export function fetchDeleteBook(id: any): any {
   return async (dispatch: Dispatch<BooksAction>) => {
     try{
       dispatch({
