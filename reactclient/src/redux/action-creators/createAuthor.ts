@@ -10,7 +10,6 @@ export function fetchCreateAuthor(author: any): any {
       });
 
       const response = await axios.post(`https://localhost:7068/api/Authors`, author);
-      debugger;
     }
     catch(e) {
       dispatch({
