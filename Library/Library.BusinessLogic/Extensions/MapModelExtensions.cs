@@ -96,5 +96,18 @@ namespace Library.BusinessLogic.Extensions
                 YearOfPublication = book.YearOfPublication,
             };
         }
+
+        public static BookCreate AsBookCreate(this BookCreateDto book)
+        {
+            return new BookCreate()
+            {
+                AuthorId = book.AuthorId,
+                Title = book.Title,
+                Description = book.Description,
+                Price = book.Price,
+                NumberOfPage = book.NumberOfPage,
+                YearOfPublication = book.YearOfPublication
+            };
+        }
     }
 }

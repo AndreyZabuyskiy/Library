@@ -20,7 +20,6 @@ D:\Программирование\Projects\Library\Library\Library.LibraryApi\
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.AssemblyInfoInputs.cache
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.AssemblyInfo.cs
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.csproj.CoreCompileInputs.cache
-D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.MvcApplicationPartsAssemblyInfo.cs
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.MvcApplicationPartsAssemblyInfo.cache
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\staticwebassets.build.json
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\staticwebassets.development.json

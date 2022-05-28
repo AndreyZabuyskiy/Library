@@ -14,17 +14,20 @@ namespace Library.LibraryApi.Controllers
         private readonly IGetBookById _getBookById;
         private readonly IDeleteBook _deleteBook;
         private readonly IUpdateBook _updateBook;
+        private readonly ICreateBook _createBook;
 
         public BooksController(
             IGetAllBooks getAllBooks,
             IGetBookById getBookById,
             IDeleteBook deleteBook,
-            IUpdateBook updateBook)
+            IUpdateBook updateBook,
+            ICreateBook createBook)
         {
             _getAllBooks = getAllBooks;
             _getBookById = getBookById;
             _deleteBook = deleteBook;   
             _updateBook = updateBook;
+            _createBook = createBook;
         }
 
         [HttpGet]
@@ -49,6 +52,18 @@ namespace Library.LibraryApi.Controllers
             };
 
             return Ok(response);
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult<CreateBookResponse>> CreateBookAsync(BookCreateDto book)
+        {
+            var response = new CreateBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Data = await _createBook.CreateBookAsync(book)
+            };
+
+            return response;
         }
 
         [HttpDelete("{id}")]

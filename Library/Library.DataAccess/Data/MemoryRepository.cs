@@ -215,5 +215,29 @@ namespace Library.DataAccess.Data
                 return book.AsBookRead();
             });
         }
+
+        public async Task<BookRead> CreateBookAsync(BookCreate bookCreate)
+        {
+            return await Task.Run(() =>
+            {
+                var author = _authors.FirstOrDefault(a => a.Id == bookCreate.AuthorId);
+
+                var book = new Book()
+                {
+                    Id = Guid.NewGuid(),
+                    Author = author,
+                    Title = bookCreate.Title,
+                    Description = bookCreate.Description,
+                    Price = bookCreate.Price,
+                    NumberOfPages = bookCreate.NumberOfPage,
+                    YearOfPublication = bookCreate.YearOfPublication,
+                    DateAddedToDb = DateTime.Now
+                };
+
+                _books.Add(book);
+
+                return book.AsBookRead();
+            });
+        }
     }
 }
