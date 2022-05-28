@@ -3,7 +3,7 @@ import Authors from './components/Authors/Authors';
 import Books from './components/Books/Books';
 import ViewAuthor from './components/Authors/ViewAuthor/ViewAuthor';
 import ViewBook from './components/Books/ViewBook/ViewBook';
-import CreateAuthor from './components/Authors/CreateAuthor/CreateAuthor';
+import CreateAuthorForm from './components/Authors/CreateAuthorForm/CreateAuthorForm';
 import UpdateAuthorForm from './components/Authors/UpdateAuthorForm/UpdateAuthorForm';
 import UpdateBookForm from './components/Books/UpdateBookForm/UpdateBookForm';
 
@@ -19,7 +19,7 @@ function App() {
         <Route path='/books' element={<Books />} />
         <Route path='/authors/:id' element={<ViewAuthor />} />
         <Route path='/books/:id' element={<ViewBook />} />
-        <Route path="/create-author" element={<CreateAuthor />} />
+        <Route path="/create-author" element={<CreateAuthorForm />} />
         <Route path="/update-author/:id" element={<UpdateAuthorForm />} />
         <Route path="/update-book/:id" element={<UpdateBookForm />} />
       </Routes>

@@ -11,8 +11,8 @@ const UpdateBookForm: React.FC = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [price, setPrice] = useState<number>();
   const [numberOfPage, setNumberOfPage] = useState<number>();
   const [yearOfPublication, setYearOfPublication] = useState<number>();
@@ -77,7 +77,7 @@ const UpdateBookForm: React.FC = () => {
           </div>
           <br />
           <div className="form-group">
-            <button type="button" onClick={clickHandler} className="btn btn-success">Update</button>
+            <button type="button" onClick={clickHandler} className="btn btn-success form-control">Update</button>
           </div>
         </div>
       )}

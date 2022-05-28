@@ -8,8 +8,8 @@ import { fetchUpdateAuthor, loadAuthor } from "../../../redux/action-creators/up
 const UpdateAuthorForm: React.FC = () => {
   const { author, loading, error, isUpdateAuthor, authorUpdated } = useTypesSelector(state =>
     state.updateAuthor);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const {id} = useParams();
 
   const dispatch = useDispatch();
@@ -44,6 +44,8 @@ const UpdateAuthorForm: React.FC = () => {
   function renderUpdateForm() {
     return (
       <div className="container">
+        <h1>{ author.firstName } { author.lastName }</h1>
+
         <div className="form-group">
           <input type="text" value={firstName} onChange={changeHandlerFirstName} className="form-control" placeholder="first name" />
         </div>
@@ -57,7 +59,7 @@ const UpdateAuthorForm: React.FC = () => {
         <br />
           
         <div className="form-group">
-          <button type="button" onClick={clickHandler} className="btn btn-success">Update</button>
+          <button type="button" onClick={clickHandler} className="btn btn-success form-control">Update</button>
         </div>
       </div>
     );

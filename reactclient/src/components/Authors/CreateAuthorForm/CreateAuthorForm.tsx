@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchCreateAuthor } from "../../../redux/action-creators/createAuthor";
 
-const CreateAuthor: React.FC = () => {
+const CreateAuthorForm: React.FC = () => {
   const {author, loading, error} = useTypesSelector(state => state.createAuthor);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
 
   const dispatch = useDispatch();
 
@@ -47,4 +47,4 @@ const CreateAuthor: React.FC = () => {
   );
 }
 
-export default CreateAuthor;
+export default CreateAuthorForm;
