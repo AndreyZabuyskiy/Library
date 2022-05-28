@@ -31,7 +31,7 @@ export function fetchUpdateAuthor(id: any, author: any): any {
       dispatch({
         type: UpdateAuthorTypes.FETCH_UPDATE_AUTHOR
       });
-
+      debugger;
       const response = await axios.put(`https://localhost:7068/api/Authors/${id}`, author);
       
       dispatch({

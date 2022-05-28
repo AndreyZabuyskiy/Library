@@ -49,9 +49,9 @@ const Books: React.FC = () => {
                 <td scope="row"> { book.title } </td>
                 <td> { book.price } </td>
                 <td>
-                  <button className="btn btn-dark btn-lg">
-                    <Link to={`/books/${book.id}`}>Update</Link>
-                  </button>
+                  <Link className="btn btn-dark btn-lg" role="button" to={`/update-book/${book.id}`}>
+                    Update
+                  </Link>
                   <button onClick={(id: any) => dispatch(fetchDeleteBook(book.id))} 
                     className="btn btn-secondary btn-lg mx-3 my-3">Delete</button>
                   <Link className="btn btn-info btn-lg" role="button" to={`/books/${book.id}`}>

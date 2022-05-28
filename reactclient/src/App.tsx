@@ -5,6 +5,7 @@ import ViewAuthor from './components/Authors/ViewAuthor/ViewAuthor';
 import ViewBook from './components/Books/ViewBook/ViewBook';
 import CreateAuthor from './components/Authors/CreateAuthor/CreateAuthor';
 import UpdateAuthorForm from './components/Authors/UpdateAuthorForm/UpdateAuthorForm';
+import UpdateBookForm from './components/Books/UpdateBookForm/UpdateBookForm';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/books/:id' element={<ViewBook />} />
         <Route path="/create-author" element={<CreateAuthor />} />
         <Route path="/update-author/:id" element={<UpdateAuthorForm />} />
+        <Route path="/update-book/:id" element={<UpdateBookForm />} />
       </Routes>
     </div>
   );
