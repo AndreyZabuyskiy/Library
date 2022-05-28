@@ -48,7 +48,9 @@ const Authors: React.FC = () => {
                   <td> { author.lastName } </td>
                   <td> { author.numberOfBooks } </td>
                   <td>
-                    <button className="btn btn-dark btn-lg">Update</button>
+                    <Link className="btn btn-dark btn-lg" role="button" to={`/update-author/${author.id}`}>
+                      Update
+                    </Link>
                     <button onClick={(id: any) => dispatch(fetchDeleteAuthors(author.id))} className="btn btn-secondary btn-lg mx-3 my-3">
                       Delete
                     </button>

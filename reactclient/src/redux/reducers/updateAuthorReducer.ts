@@ -54,7 +54,7 @@ export const updateAuthorReducer = (state = initialState, action: UpdateAuthorAc
       return {
         loading: false,
         error: null,
-        author: null,
+        author: action.payload,
         isUpdateAuthor: true,
         authorUpdated: action.payload
       }
