@@ -84,5 +84,17 @@ namespace Library.BusinessLogic.Extensions
                 LastName = author.LastName
             };
         }
+
+        public static BookUpdate AsBookUpdate(this BookUpdateDto book)
+        {
+            return new BookUpdate()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                Price = book.Price,
+                NumberOfPage = book.NumberOfPage,
+                YearOfPublication = book.YearOfPublication,
+            };
+        }
     }
 }

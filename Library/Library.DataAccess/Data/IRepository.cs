@@ -13,5 +13,6 @@ namespace Library.DataAccess.Data
         public Task<int> GetNumberOfBooksByAuthorIdAsync(Guid id);
         public Task<AuthorRead> CreateAuthorAsync(AuthorCreate authorCreate);
         public Task<AuthorRead> UpdateAuthorAsync(Guid id, AuthorUpdate authorUpdate);
+        public Task<BookRead> UpdateBookAsync(Guid id, BookUpdate bookUpdate);
     }
 }

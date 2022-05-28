@@ -201,11 +201,18 @@ namespace Library.DataAccess.Data
             return await Task.Run(() =>
             {
                 var author = _authors.FirstOrDefault(a => a.Id == id);
-
-                author.FirstName = authorUpdate.FirstName;
-                author.LastName = authorUpdate.LastName;
-
+                author.Update(authorUpdate);
                 return author.AsAuthorRead();
+            });
+        }
+
+        public async Task<BookRead> UpdateBookAsync(Guid id, BookUpdate bookUpdate)
+        {
+            return await Task.Run(() =>
+            {
+                var book = _books.FirstOrDefault(b => b.Id == id);
+                book.Update(bookUpdate);
+                return book.AsBookRead();
             });
         }
     }

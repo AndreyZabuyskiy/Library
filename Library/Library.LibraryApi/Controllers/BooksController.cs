@@ -1,4 +1,5 @@
-﻿using Library.BusinessLogic.UseCases;
+﻿using Library.BusinessLogic.Dtos;
+using Library.BusinessLogic.UseCases;
 using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +13,18 @@ namespace Library.LibraryApi.Controllers
         private readonly IGetAllBooks _getAllBooks;
         private readonly IGetBookById _getBookById;
         private readonly IDeleteBook _deleteBook;
+        private readonly IUpdateBook _updateBook;
 
         public BooksController(
             IGetAllBooks getAllBooks,
             IGetBookById getBookById,
-            IDeleteBook deleteBook)
+            IDeleteBook deleteBook,
+            IUpdateBook updateBook)
         {
             _getAllBooks = getAllBooks;
             _getBookById = getBookById;
-            _deleteBook = deleteBook;            
+            _deleteBook = deleteBook;   
+            _updateBook = updateBook;
         }
 
         [HttpGet]
@@ -54,6 +58,18 @@ namespace Library.LibraryApi.Controllers
             {
                 Status = ResponseApi.StatusResponse.Success,
                 Data = await _deleteBook.DeleteBookAsync(id)
+            };
+
+            return Ok(response);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UpdateBookResponse>> UpdateBookAsync(Guid id, BookUpdateDto bookUpdate)
+        {
+            var response = new UpdateBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Data = await _updateBook.UpdateBookAsync(id, bookUpdate)
             };
 
             return Ok(response);

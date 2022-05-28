@@ -29,5 +29,20 @@ namespace Library.DataAccess.Extensions
                 Price = book.Price
             };
         }
+
+        public static void Update(this Author author, AuthorUpdate authorUpdate)
+        {
+            author.FirstName = authorUpdate.FirstName;
+            author.LastName = authorUpdate.LastName;
+        }
+
+        public static void Update(this Book book, BookUpdate bookUpdate)
+        {
+            book.Title = bookUpdate.Title;
+            book.Description = bookUpdate.Description;
+            book.Price = bookUpdate.Price;
+            book.NumberOfPages = bookUpdate.NumberOfPage;
+            book.YearOfPublication = bookUpdate.YearOfPublication;
+        }
     }
 }

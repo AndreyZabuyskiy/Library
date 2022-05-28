@@ -5,7 +5,7 @@ using Library.DataAccess.Data;
 
 namespace Library.BusinessLogic.Services
 {
-    public class BookService : IGetAllBooks, IGetBookById, IDeleteBook
+    public class BookService : IGetAllBooks, IGetBookById, IDeleteBook, IUpdateBook
     {
         private readonly IRepository _repository;
 
@@ -36,6 +36,12 @@ namespace Library.BusinessLogic.Services
         {
             var book = await _repository.GetBookById(id);
             return book.AsBookViewDto();
+        }
+
+        public async Task<BookReadDto> UpdateBookAsync(Guid id, BookUpdateDto book)
+        {
+            var authorUpdate = await _repository.UpdateBookAsync(id, book.AsBookUpdate());
+            return authorUpdate.AsBookReadDto();
         }
     }
 }

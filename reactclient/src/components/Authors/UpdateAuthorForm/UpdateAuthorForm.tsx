@@ -6,7 +6,8 @@ import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchUpdateAuthor, loadAuthor } from "../../../redux/action-creators/updateAuthor";
 
 const UpdateAuthorForm: React.FC = () => {
-  const { author, loading, error, isUpdateAuthor, authorUpdated } = useTypesSelector(state => state.updateAuthor);
+  const { author, loading, error, isUpdateAuthor, authorUpdated } = useTypesSelector(state =>
+    state.updateAuthor);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const {id} = useParams();
