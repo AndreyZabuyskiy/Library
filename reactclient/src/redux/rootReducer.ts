@@ -4,6 +4,7 @@ import { authorViewReducer } from "./reducers/authorViewReducer";
 import { booksReducer } from "./reducers/booksReducer";
 import { bookViewReducer } from "./reducers/bookViewReducer";
 import { createAuthorReducer } from "./reducers/createAuthorReducer";
+import { createBookReducer } from "./reducers/createBookReducer";
 import { updateAuthorReducer } from "./reducers/updateAuthorReducer";
 import { updateBookReducer } from "./reducers/updateBookReducer";
 
@@ -14,7 +15,8 @@ export const rootReducer = combineReducers({
   bookView: bookViewReducer,
   createAuthor: createAuthorReducer,
   updateAuthor: updateAuthorReducer,
-  updateBook: updateBookReducer
+  updateBook: updateBookReducer,
+  createBook: createBookReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

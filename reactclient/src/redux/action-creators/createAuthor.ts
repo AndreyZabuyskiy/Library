@@ -14,7 +14,7 @@ export function fetchCreateAuthor(author: any): any {
     catch(e) {
       dispatch({
         type: CreateAuthorTypes.FETCH_CREATE_AUTHOR_ERROR,
-        payload: "Ошибка при создании автора"
+        payload: "Ошибка при добавлении автора"
       });
     }
   }
