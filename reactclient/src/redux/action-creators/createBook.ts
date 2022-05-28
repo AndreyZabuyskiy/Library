@@ -8,8 +8,8 @@ export function fetchCreateBook(book: any): any {
       dispatch({
         type: CreateBookTypes.FETCH_CREATE_BOOK
       });
-
-      const response = await axios.post(`https://localhost:7068/api/Authors`, book);
+      
+      const response = await axios.post(`https://localhost:7068/api/Books`, book);
 
       dispatch({
         type: CreateBookTypes.FETCH_CREATE_BOOK_SUCCESS,
