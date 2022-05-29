@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchBookView } from "../../../redux/action-creators/bookView";
 
@@ -16,10 +16,6 @@ export const ViewBook: React.FC = () => {
   const styleAuthorName =
   {
     backgroundColor: 'blue'
-  };
-
-  const styleAuthorNameText = {
-    backgroundColor: "yellow"
   };
 
   return (
@@ -41,15 +37,6 @@ export const ViewBook: React.FC = () => {
             <div className="row">
               <div className="col-md-12">
                 <h2>Settings:</h2>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                <span>Author</span>
-              </div>
-              <div className="col-xs-6 col-sm-9 col-md-9 col-lg-9">
-                <span>{ book.author.firstName } { book.author.lastName}</span>
               </div>
             </div>
 
@@ -77,6 +64,17 @@ export const ViewBook: React.FC = () => {
               </div>
               <div className="col-xs-6 col-sm-9 col-md-9 col-lg-9">
                 <span>{ book.yearOfPublication }</span>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <span>Author:</span>
+              </div>
+              <div className="col-xs-6 col-sm-9 col-md-9 col-lg-9">
+                <Link to={`/authors/${book.author.id}`} className="btn btn-link">
+                  { book.author.firstName } { book.author.lastName }
+                </Link>
               </div>
             </div>
           </div>
