@@ -27,9 +27,9 @@ const CreateAuthorForm: React.FC = () => {
       firstName,
       lastName,
       dateOfBirth: {
-        day: dateOfBirth?.getDate(),
-        month: (dateOfBirth?.getMonth()) + 1,
-        year: dateOfBirth?.getFullYear()
+        year: dateOfBirth?.getFullYear(),
+        month: dateOfBirth?.getMonth() + 1,
+        day: dateOfBirth?.getDate()
       }
     }));
   }

@@ -12,13 +12,17 @@ namespace Library.DataAccess.Data
             {
                 Id = Guid.NewGuid(),
                 FirstName = "Лев",
-                LastName = "Толстой"
+                LastName = "Толстой",
+                Description = "Лев Толстой описание",
+                DateOfBirth = new Date(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year)
             },
             new Author()
             {
                 Id = Guid.NewGuid(),
                 FirstName = "Федор",
-                LastName = "Достоевский"
+                LastName = "Достоевский",
+                Description = "Федор Достоевский описание",
+                DateOfBirth = new Date(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year)
             }
         };
 
@@ -80,6 +84,7 @@ namespace Library.DataAccess.Data
                     Id = author.Id,
                     FirstName = author.FirstName,
                     LastName = author.LastName,
+                    Description = author.Description,
                     DateOfBirth = author.DateOfBirth,
                     Books = books
                 };
