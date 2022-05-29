@@ -44,6 +44,7 @@ namespace Library.BusinessLogic.Extensions
                 Id = author.Id,
                 FirstName = author.FirstName,
                 LastName = author.LastName,
+                DateOfBirth = author.DateOfBirth,
                 Books = books
             };
         }
@@ -72,7 +73,8 @@ namespace Library.BusinessLogic.Extensions
             return new AuthorCreate
             {
                 FirstName = author.FirstName,
-                LastName = author.LastName
+                LastName = author.LastName,
+                DateOfBirth = author.DateOfBirth
             };
         }
 

@@ -80,6 +80,7 @@ namespace Library.DataAccess.Data
                     Id = author.Id,
                     FirstName = author.FirstName,
                     LastName = author.LastName,
+                    DateOfBirth = author.DateOfBirth,
                     Books = books
                 };
 
@@ -187,7 +188,8 @@ namespace Library.DataAccess.Data
                 {
                     Id = Guid.NewGuid(),
                     FirstName = authorCreate.FirstName,
-                    LastName = authorCreate.LastName
+                    LastName = authorCreate.LastName,
+                    DateOfBirth = authorCreate.DateOfBirth,
                 };
 
                 _authors.Add(author);

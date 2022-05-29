@@ -8,7 +8,7 @@ export function fetchCreateAuthor(author: any): any {
       dispatch({
         type: CreateAuthorTypes.FETCH_CREATE_AUTHOR
       });
-
+      debugger;
       const response = await axios.post(`https://localhost:7068/api/Authors`, author);
     }
     catch(e) {
