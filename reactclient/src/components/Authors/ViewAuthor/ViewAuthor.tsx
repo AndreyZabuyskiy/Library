@@ -33,12 +33,18 @@ const ViewAuthor: React.FC = () => {
 
           <div className="row">
             <p className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-              Date of birth: {author.dateOfBirth.day}/{author.dateOfBirth.month}/{author.dateOfBirth.year}
+              { author.description }
             </p>
           </div>
 
           <div className="row">
             <p className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              Date of birth: {author.dateOfBirth.day}/{author.dateOfBirth.month}/{author.dateOfBirth.year}
+            </p>
+          </div>
+
+          <div className="row">
+            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
               <h2>Books:</h2>
               {author.books.map(book => (
                 <p>
@@ -47,7 +53,7 @@ const ViewAuthor: React.FC = () => {
                   </Link>
                 </p>
               ))}
-            </p>
+            </div>
           </div>
         </div>
       )}
