@@ -33,27 +33,51 @@ public class AuthorsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<GetAllAuthorsResponse>> GetAuthors()
     {
-        var response = new GetAllAuthorsResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Succsufully",
-            Data = await _getAllAuthors.GetAllAutors(),
-        };
+            var response = new GetAllAuthorsResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Succsufully",
+                Data = await _getAllAuthors.GetAllAutors(),
+            };
 
-        return Ok(response);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<GetAuthorByIdResponse>> GetAuthorById(Guid id)
     {
-        var response = new GetAuthorByIdResponse()
+        if(id == Guid.Empty)
         {
-            Status = StatusResponse.Success,
-            Messages = "Succsufully",
-            Data = await _getAuthorById.GetAuthorById(id),
-        };
+            return BadRequest(new GetAuthorByIdResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Succsufully",
+                Data = await _getAuthorById.GetAuthorById(id),
+            });
+        }
 
-        return Ok(response);
+        try
+        {
+            var response = new GetAuthorByIdResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Succsufully",
+                Data = await _getAuthorById.GetAuthorById(id),
+            };
+
+            return Ok(response);
+        }
+        catch(Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpPost]
@@ -69,12 +93,21 @@ public class AuthorsController : ControllerBase
             });
         }
 
-        return Ok(new AuthorCreateResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Author added succsufully",
-            Data = await _authorCreate.CreateAuthorAsync(authorCreate),
-        });
+            var response = new AuthorCreateResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Author added succsufully",
+                Data = await _authorCreate.CreateAuthorAsync(authorCreate),
+            };
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpDelete("{id}")]
@@ -90,12 +123,21 @@ public class AuthorsController : ControllerBase
             });
         }
 
-        return Ok(new DeleteAuthorResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Author deleted succsufully",
-            Data = await _authorDelete.DeleteAuthorAsync(id),
-        });
+            var response = new DeleteAuthorResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Author deleted succsufully",
+                Data = await _authorDelete.DeleteAuthorAsync(id),
+            };
+
+            return Ok(response);
+        }
+        catch(Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpPut("{id}")]
@@ -121,13 +163,20 @@ public class AuthorsController : ControllerBase
             });
         }
 
-        var response = new UpdateAuthorResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Author updated succsufully",
-            Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor),
-        };
+            var response = new UpdateAuthorResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Author updated succsufully",
+                Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor),
+            };
 
-        return response;
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 }

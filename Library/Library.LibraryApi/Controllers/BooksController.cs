@@ -33,14 +33,21 @@ public class BooksController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<GetAllBooksResponse>> GetAllBooks()
     {
-        var response = new GetAllBooksResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Succsufully",
-            Data = await _getAllBooks.GetAllBooks(),
-        };
+            var response = new GetAllBooksResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Succsufully",
+                Data = await _getAllBooks.GetAllBooks(),
+            };
 
-        return Ok(response);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpGet("{id}")]
@@ -56,14 +63,21 @@ public class BooksController : ControllerBase
             });
         }
 
-        var response = new GetBookByIdResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Succsufully",
-            Data = await _getBookById.GetBookById(id),
-        };
+            var response = new GetBookByIdResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Succsufully",
+                Data = await _getBookById.GetBookById(id),
+            };
 
-        return Ok(response);
+            return Ok(response);
+        }
+        catch(Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
     
     [HttpPost]
@@ -79,14 +93,21 @@ public class BooksController : ControllerBase
             });
         }
 
-        var response = new CreateBookResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Book created succssfully",
-            Data = await _createBook.CreateBookAsync(book),
-        };
+            var response = new CreateBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Book created succssfully",
+                Data = await _createBook.CreateBookAsync(book),
+            };
 
-        return response;
+            return response;
+        }
+        catch(Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpDelete("{id}")]
@@ -102,14 +123,21 @@ public class BooksController : ControllerBase
             });
         }
 
-        var response = new DeleteBookResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Book deleted successfully",
-            Data = await _deleteBook.DeleteBookAsync(id),
-        };
+            var response = new DeleteBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Book deleted successfully",
+                Data = await _deleteBook.DeleteBookAsync(id),
+            };
 
-        return Ok(response);
+            return Ok(response);
+        }
+        catch(Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
     [HttpPut("{id}")]
@@ -135,13 +163,20 @@ public class BooksController : ControllerBase
             });
         }
 
-        var response = new UpdateBookResponse()
+        try
         {
-            Status = StatusResponse.Success,
-            Messages = "Book updated successfully",
-            Data = await _updateBook.UpdateBookAsync(id, bookUpdate),
-        };
+            var response = new UpdateBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Book updated successfully",
+                Data = await _updateBook.UpdateBookAsync(id, bookUpdate),
+            };
 
-        return Ok(response);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 }
