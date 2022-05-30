@@ -1,9 +1,8 @@
 ﻿using Library.BusinessLogic.Dtos;
 
-namespace Library.BusinessLogic.UseCases
+namespace Library.BusinessLogic.UseCases;
+
+public interface IGetBookById
 {
-    public interface IGetBookById
-    {
-        public Task<BookViewDto> GetBookById(Guid id);
-    }
+    public Task<BookViewDto> GetBookById(Guid id);
 }

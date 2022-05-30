@@ -1,7 +1,6 @@
-﻿namespace Library.LibraryApi.ResponseApi
+﻿namespace Library.LibraryApi.ResponseApi;
+
+public enum StatusResponse
 {
-    public enum StatusResponse
-    {
-        Success
-    }
+    Success
 }

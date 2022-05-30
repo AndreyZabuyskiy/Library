@@ -3,54 +3,53 @@ using Library.BusinessLogic.Extensions;
 using Library.BusinessLogic.UseCases;
 using Library.DataAccess.Data;
 
-namespace Library.BusinessLogic.Services
+namespace Library.BusinessLogic.Services;
+
+public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor, ICreateAuthor, IUpdateAuthor
 {
-    public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor, ICreateAuthor, IUpdateAuthor
+    private readonly IRepository _repository;
+
+    public AuthorsService(IRepository repository)
     {
-        private readonly IRepository _repository;
+        _repository = repository;
+    }
 
-        public AuthorsService(IRepository repository)
+    public async Task<AuthorReadDto> CreateAuthorAsync(AuthorCreateDto author)
+    {
+        var authorCreated = await _repository.CreateAuthorAsync(author.AsAuthorCreate());
+        var count = await _repository.GetNumberOfBooksByAuthorIdAsync(authorCreated.Id);
+        return authorCreated.AsAuthorReadDto(count);
+    }
+
+    public async Task<IEnumerable<AuthorReadDto>> GetAllAutors()
+    {
+        var authors = await _repository.GetAuthorsAll();
+        var authorsDto = new List<AuthorReadDto>();
+
+        foreach (var author in authors)
         {
-            _repository = repository;
+            var count = await _repository.GetNumberOfBooksByAuthorIdAsync(author.Id);
+            authorsDto.Add(author.AsAuthorReadDto(count));
         }
 
-        public async Task<AuthorReadDto> CreateAuthorAsync(AuthorCreateDto author)
-        {
-            var authorCreated = await _repository.CreateAuthorAsync(author.AsAuthorCreate());
-            var count = await _repository.GetNumberOfBooksByAuthorIdAsync(authorCreated.Id);
-            return authorCreated.AsAuthorReadDto(count);
-        }
+        return authorsDto;
+    }
 
-        public async Task<IEnumerable<AuthorReadDto>> GetAllAutors()
-        {
-            var authors = await _repository.GetAuthorsAll();
-            var authorsDto = new List<AuthorReadDto>();
+    public Task<bool> DeleteAuthorAsync(Guid id)
+    {
+        return _repository.DeleteAuthorAsync(id);
+    }
 
-            foreach (var author in authors)
-            {
-                var count = await _repository.GetNumberOfBooksByAuthorIdAsync(author.Id);
-                authorsDto.Add(author.AsAuthorReadDto(count));
-            }
+    public async Task<AuthorViewDto> GetAuthorById(Guid id)
+    {
+        var author = await _repository.GetAuthorById(id);
+        return author.AsAuthorViewDto();
+    }
 
-            return authorsDto;
-        }
-
-        public Task<bool> DeleteAuthorAsync(Guid id)
-        {
-            return _repository.DeleteAuthorAsync(id);
-        }
-
-        public async Task<AuthorViewDto> GetAuthorById(Guid id)
-        {
-            var author = await _repository.GetAuthorById(id);
-            return author.AsAuthorViewDto();
-        }
-
-        public async Task<AuthorReadDto> UpdateAuthorAsync(Guid id, AuthorUpdateDto author)
-        {
-            var authorUpdate = await _repository.UpdateAuthorAsync(id, author.AsAuthorUpdate());
-            var count = await _repository.GetNumberOfBooksByAuthorIdAsync(authorUpdate.Id);
-            return authorUpdate.AsAuthorReadDto(count);
-        }
+    public async Task<AuthorReadDto> UpdateAuthorAsync(Guid id, AuthorUpdateDto author)
+    {
+        var authorUpdate = await _repository.UpdateAuthorAsync(id, author.AsAuthorUpdate());
+        var count = await _repository.GetNumberOfBooksByAuthorIdAsync(authorUpdate.Id);
+        return authorUpdate.AsAuthorReadDto(count);
     }
 }

@@ -1,9 +1,8 @@
 ﻿using Library.BusinessLogic.Dtos;
 
-namespace Library.BusinessLogic.UseCases
+namespace Library.BusinessLogic.UseCases;
+
+public interface ICreateBook
 {
-    public interface ICreateBook
-    {
-        public Task<BookReadDto> CreateBookAsync(BookCreateDto book);
-    }
+    public Task<BookReadDto> CreateBookAsync(BookCreateDto book);
 }

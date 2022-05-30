@@ -1,8 +1,7 @@
-﻿namespace Library.LibraryApi.ResponseApi
+﻿namespace Library.LibraryApi.ResponseApi;
+
+public interface IResponseApi<T>
 {
-    public interface IResponseApi<T>
-    {
-        public StatusResponse Status { get; set; }
-        public T Data { get; set; }
-    }
+    public StatusResponse Status { get; set; }
+    public T Data { get; set; }
 }

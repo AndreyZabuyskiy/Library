@@ -1,8 +1,7 @@
-﻿namespace Library.BusinessLogic.Dtos
+﻿namespace Library.BusinessLogic.Dtos;
+
+public class BookOverviewInfoDto
 {
-    public class BookOverviewInfoDto
-    {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Title { get; set; }
 }

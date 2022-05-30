@@ -1,7 +1,6 @@
-﻿namespace Library.BusinessLogic.UseCases
+﻿namespace Library.BusinessLogic.UseCases;
+
+public interface IDeleteBook
 {
-    public interface IDeleteBook
-    {
-        public Task<bool> DeleteBookAsync(Guid id);
-    }
+    public Task<bool> DeleteBookAsync(Guid id);
 }

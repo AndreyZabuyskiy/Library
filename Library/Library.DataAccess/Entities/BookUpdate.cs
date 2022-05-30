@@ -1,11 +1,10 @@
-﻿namespace Library.DataAccess.Entities
+﻿namespace Library.DataAccess.Entities;
+
+public class BookUpdate
 {
-    public class BookUpdate
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public int NumberOfPage { get; set; }
-        public int YearOfPublication { get; set; }
-    }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+    public int NumberOfPage { get; set; }
+    public int YearOfPublication { get; set; }
 }

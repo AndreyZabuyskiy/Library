@@ -1,9 +1,8 @@
-﻿namespace Library.DataAccess.Entities
+﻿namespace Library.DataAccess.Entities;
+
+public class BookRead
 {
-    public class BookRead
-    {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public decimal Price { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Title { get; set; }
+    public decimal Price { get; set; }
 }

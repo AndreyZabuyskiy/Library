@@ -1,8 +1,7 @@
-﻿namespace Library.LibraryApi.ResponseApi.Responses
+﻿namespace Library.LibraryApi.ResponseApi.Responses;
+
+public class DeleteAuthorResponse : IResponseApi<bool>
 {
-    public class DeleteAuthorResponse : IResponseApi<bool>
-    {
-        public StatusResponse Status { get; set; }
-        public bool Data { get; set; }
-    }
+    public StatusResponse Status { get; set; }
+    public bool Data { get; set; }
 }

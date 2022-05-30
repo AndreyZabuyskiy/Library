@@ -1,117 +1,116 @@
 ﻿using Library.BusinessLogic.Dtos;
 using Library.DataAccess.Entities;
 
-namespace Library.BusinessLogic.Extensions
+namespace Library.BusinessLogic.Extensions;
+
+internal static class MapModelExtensions
 {
-    internal static class MapModelExtensions
+    public static AuthorReadDto AsAuthorReadDto(this AuthorRead author, int count)
     {
-        public static AuthorReadDto AsAuthorReadDto(this AuthorRead author, int count)
+        return new AuthorReadDto
         {
-            return new AuthorReadDto
-            {
-                Id = author.Id,
-                FirstName = author.FirstName,
-                LastName = author.LastName,
-                NumberOfBooks = count
-            };
-        }
+            Id = author.Id,
+            FirstName = author.FirstName,
+            LastName = author.LastName,
+            NumberOfBooks = count
+        };
+    }
 
-        public static BookReadDto AsBookReadDto(this BookRead book)
+    public static BookReadDto AsBookReadDto(this BookRead book)
+    {
+        return new BookReadDto
         {
-            return new BookReadDto
+            Id = book.Id,
+            Title = book.Title,
+            Price = book.Price,
+        };
+    }
+
+    public static AuthorViewDto AsAuthorViewDto(this AuthorView author)
+    {
+        var books = new List<BookOverviewInfoDto>();
+
+        foreach (var book in author.Books)
+        {
+            books.Add(new BookOverviewInfoDto()
             {
                 Id = book.Id,
-                Title = book.Title,
-                Price = book.Price,
-            };
+                Title = book.Title
+            });
         }
 
-        public static AuthorViewDto AsAuthorViewDto(this AuthorView author)
+        return new AuthorViewDto()
         {
-            var books = new List<BookOverviewInfoDto>();
+            Id = author.Id,
+            FirstName = author.FirstName,
+            LastName = author.LastName,
+            Description = author.Description,
+            DateOfBirth = author.DateOfBirth,
+            Books = books
+        };
+    }
 
-            foreach (var book in author.Books)
+    public static BookViewDto AsBookViewDto(this BookView book)
+    {
+        return new BookViewDto()
+        {
+            Id = book.Id,
+            Title = book.Title,
+            Description = book.Description,
+            Price = book.Price,
+            NumberOfPages = book.NumberOfPages,
+            YearOfPublication = book.YearOfPublication,
+            Author = new AuthorOverviewInfoDto()
             {
-                books.Add(new BookOverviewInfoDto()
-                {
-                    Id = book.Id,
-                    Title = book.Title
-                });
+                Id = book.Author.Id,
+                FirstName = book.Author.FirstName,
+                LastName = book.Author.LastName
             }
+        };
+    }
 
-            return new AuthorViewDto()
-            {
-                Id = author.Id,
-                FirstName = author.FirstName,
-                LastName = author.LastName,
-                Description = author.Description,
-                DateOfBirth = author.DateOfBirth,
-                Books = books
-            };
-        }
-
-        public static BookViewDto AsBookViewDto(this BookView book)
+    public static AuthorCreate AsAuthorCreate(this AuthorCreateDto author)
+    {
+        return new AuthorCreate
         {
-            return new BookViewDto()
-            {
-                Id = book.Id,
-                Title = book.Title,
-                Description = book.Description,
-                Price = book.Price,
-                NumberOfPages = book.NumberOfPages,
-                YearOfPublication = book.YearOfPublication,
-                Author = new AuthorOverviewInfoDto()
-                {
-                    Id = book.Author.Id,
-                    FirstName = book.Author.FirstName,
-                    LastName = book.Author.LastName
-                }
-            };
-        }
+            FirstName = author.FirstName,
+            LastName = author.LastName,
+            Description = author.Description,
+            DateOfBirth = author.DateOfBirth
+        };
+    }
 
-        public static AuthorCreate AsAuthorCreate(this AuthorCreateDto author)
+    public static AuthorUpdate AsAuthorUpdate(this AuthorUpdateDto author)
+    {
+        return new AuthorUpdate
         {
-            return new AuthorCreate
-            {
-                FirstName = author.FirstName,
-                LastName = author.LastName,
-                Description = author.Description,
-                DateOfBirth = author.DateOfBirth
-            };
-        }
+            FirstName = author.FirstName,
+            LastName = author.LastName
+        };
+    }
 
-        public static AuthorUpdate AsAuthorUpdate(this AuthorUpdateDto author)
+    public static BookUpdate AsBookUpdate(this BookUpdateDto book)
+    {
+        return new BookUpdate()
         {
-            return new AuthorUpdate
-            {
-                FirstName = author.FirstName,
-                LastName = author.LastName
-            };
-        }
+            Title = book.Title,
+            Description = book.Description,
+            Price = book.Price,
+            NumberOfPage = book.NumberOfPage,
+            YearOfPublication = book.YearOfPublication,
+        };
+    }
 
-        public static BookUpdate AsBookUpdate(this BookUpdateDto book)
+    public static BookCreate AsBookCreate(this BookCreateDto book)
+    {
+        return new BookCreate()
         {
-            return new BookUpdate()
-            {
-                Title = book.Title,
-                Description = book.Description,
-                Price = book.Price,
-                NumberOfPage = book.NumberOfPage,
-                YearOfPublication = book.YearOfPublication,
-            };
-        }
-
-        public static BookCreate AsBookCreate(this BookCreateDto book)
-        {
-            return new BookCreate()
-            {
-                AuthorId = book.AuthorId,
-                Title = book.Title,
-                Description = book.Description,
-                Price = book.Price,
-                NumberOfPage = book.NumberOfPage,
-                YearOfPublication = book.YearOfPublication
-            };
-        }
+            AuthorId = book.AuthorId,
+            Title = book.Title,
+            Description = book.Description,
+            Price = book.Price,
+            NumberOfPage = book.NumberOfPage,
+            YearOfPublication = book.YearOfPublication
+        };
     }
 }

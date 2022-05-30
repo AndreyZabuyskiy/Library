@@ -3,51 +3,50 @@ using Library.BusinessLogic.Extensions;
 using Library.BusinessLogic.UseCases;
 using Library.DataAccess.Data;
 
-namespace Library.BusinessLogic.Services
+namespace Library.BusinessLogic.Services;
+
+public class BookService : IGetAllBooks, IGetBookById, IDeleteBook, IUpdateBook, ICreateBook
 {
-    public class BookService : IGetAllBooks, IGetBookById, IDeleteBook, IUpdateBook, ICreateBook
+    private readonly IRepository _repository;
+
+    public BookService(IRepository repository)
     {
-        private readonly IRepository _repository;
+        _repository = repository;
+    }
 
-        public BookService(IRepository repository)
+    public async Task<BookReadDto> CreateBookAsync(BookCreateDto book)
+    {
+        var bookCreated = await _repository.CreateBookAsync(book.AsBookCreate());
+        return bookCreated.AsBookReadDto();
+    }
+
+    public Task<bool> DeleteBookAsync(Guid id)
+    {
+        return _repository.DeleteBookAsync(id);
+    }
+
+    public async Task<IEnumerable<BookReadDto>> GetAllBooks()
+    {
+        var books = await _repository.GetBooksAll();
+        var booksDto = new List<BookReadDto>();
+
+        foreach(var book in books)
         {
-            _repository = repository;
+            booksDto.Add(book.AsBookReadDto());
         }
 
-        public async Task<BookReadDto> CreateBookAsync(BookCreateDto book)
-        {
-            var bookCreated = await _repository.CreateBookAsync(book.AsBookCreate());
-            return bookCreated.AsBookReadDto();
-        }
+        return booksDto;
+    }
 
-        public Task<bool> DeleteBookAsync(Guid id)
-        {
-            return _repository.DeleteBookAsync(id);
-        }
+    public async Task<BookViewDto> GetBookById(Guid id)
+    {
+        var book = await _repository.GetBookById(id);
+        return book.AsBookViewDto();
+    }
 
-        public async Task<IEnumerable<BookReadDto>> GetAllBooks()
-        {
-            var books = await _repository.GetBooksAll();
-            var booksDto = new List<BookReadDto>();
-
-            foreach(var book in books)
-            {
-                booksDto.Add(book.AsBookReadDto());
-            }
-
-            return booksDto;
-        }
-
-        public async Task<BookViewDto> GetBookById(Guid id)
-        {
-            var book = await _repository.GetBookById(id);
-            return book.AsBookViewDto();
-        }
-
-        public async Task<BookReadDto> UpdateBookAsync(Guid id, BookUpdateDto book)
-        {
-            var authorUpdate = await _repository.UpdateBookAsync(id, book.AsBookUpdate());
-            return authorUpdate.AsBookReadDto();
-        }
+    public async Task<BookReadDto> UpdateBookAsync(Guid id, BookUpdateDto book)
+    {
+        var authorUpdate = await _repository.UpdateBookAsync(id, book.AsBookUpdate());
+        return authorUpdate.AsBookReadDto();
     }
 }
