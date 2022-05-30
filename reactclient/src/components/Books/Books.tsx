@@ -19,14 +19,13 @@ const Books: React.FC = () => {
   if(error){
     return <h1>{error}</h1>
   }
-
-  type ButtonProps = {
-    handleClick: () => void
-  }
-
+  
   return (
     <div className="container">
       <div className="col d-flex flex-column justify-content-center align-items-center">
+        <Link to="/authors">Авторы</Link>
+        <Link to="/books">Книги</Link>
+
         {renderBooksTable()}
       </div>
     </div>

@@ -11,9 +11,6 @@ import CreateBookForm from './components/Books/CreateBookForm/CreateBookForm';
 function App() {
   return (
     <div className="App">
-      <Link to="/authors">Авторы</Link>
-      <Link to="/books">Книги</Link>
-
       <Routes>
         <Route path='/' element={<Authors />} />
         <Route path='/authors' element={<Authors />} />

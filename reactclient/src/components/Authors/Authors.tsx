@@ -23,6 +23,9 @@ const Authors: React.FC = () => {
   return (
     <div className="container">
       <div className="col d-flex flex-column justify-content-center align-items-center">
+        <Link to="/authors">Авторы</Link>
+        <Link to="/books">Книги</Link>
+
         {renderAuthorsTable()}
       </div>
     </div>

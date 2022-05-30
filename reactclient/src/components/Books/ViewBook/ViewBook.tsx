@@ -13,11 +13,6 @@ export const ViewBook: React.FC = () => {
     dispatch(fetchBookView(id));
   }, [id]);
 
-  const styleAuthorName =
-  {
-    backgroundColor: 'blue'
-  };
-
   return (
     <div>
       {
