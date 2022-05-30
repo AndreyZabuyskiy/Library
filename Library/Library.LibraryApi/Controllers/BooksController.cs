@@ -36,8 +36,8 @@ public class BooksController : ControllerBase
         var response = new GetAllBooksResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Succsufully",
             Data = await _getAllBooks.GetAllBooks(),
-            Messages = "Succsufully"
         };
 
         return Ok(response);
@@ -46,11 +46,21 @@ public class BooksController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<GetBookByIdResponse>> GetBookById(Guid id)
     {
+        if(id == Guid.Empty)
+        {
+            return BadRequest(new GetBookByIdResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = "Id is null",
+                Data = null,
+            });
+        }
+
         var response = new GetBookByIdResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Succsufully",
             Data = await _getBookById.GetBookById(id),
-            Messages = "Succsufully"
         };
 
         return Ok(response);
@@ -59,11 +69,21 @@ public class BooksController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<CreateBookResponse>> CreateBookAsync(BookCreateDto book)
     {
+        if(book == null)
+        {
+            return BadRequest(new CreateBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Book created succssfully",
+                Data = null,
+            });
+        }
+
         var response = new CreateBookResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Book created succssfully",
             Data = await _createBook.CreateBookAsync(book),
-            Messages = "Book created succssfully"
         };
 
         return response;
@@ -72,11 +92,21 @@ public class BooksController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<DeleteBookResponse>> DeleteBookAsync(Guid id)
     {
+        if(id == Guid.Empty)
+        {
+            return BadRequest(new DeleteBookResponse()
+            {
+                Status = StatusResponse.Success,
+                Messages = "Book deleted successfully",
+                Data = false,
+            });
+        }
+
         var response = new DeleteBookResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Book deleted successfully",
             Data = await _deleteBook.DeleteBookAsync(id),
-            Messages = "Book deleted successfully"
         };
 
         return Ok(response);
@@ -85,11 +115,31 @@ public class BooksController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<UpdateBookResponse>> UpdateBookAsync(Guid id, BookUpdateDto bookUpdate)
     {
+        if(id == Guid.Empty)
+        {
+            return BadRequest(new UpdateBookResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = "Id is empty",
+                Data = null,
+            });
+        }
+
+        if(bookUpdate == null)
+        {
+            return BadRequest(new UpdateBookResponse()
+            {
+                Status= StatusResponse.Error,
+                Messages = "Book is empty",
+                Data = null
+            });
+        }
+
         var response = new UpdateBookResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Book updated successfully",
             Data = await _updateBook.UpdateBookAsync(id, bookUpdate),
-            Messages = "Book updated successfully"
         };
 
         return Ok(response);

@@ -36,8 +36,8 @@ public class AuthorsController : ControllerBase
         var response = new GetAllAuthorsResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Succsufully",
             Data = await _getAllAuthors.GetAllAutors(),
-            Messages = "Succsufully"
         };
 
         return Ok(response);
@@ -49,8 +49,8 @@ public class AuthorsController : ControllerBase
         var response = new GetAuthorByIdResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Succsufully",
             Data = await _getAuthorById.GetAuthorById(id),
-            Messages = "Succsufully"
         };
 
         return Ok(response);
@@ -59,37 +59,73 @@ public class AuthorsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<AuthorCreateResponse>> CreateAuthorAsync(AuthorCreateDto authorCreate)
     {
-        var response = new AuthorCreateResponse()
+        if(authorCreate == null)
+        {
+            return BadRequest(new AuthorCreateResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = "Author is empty",
+                Data = null
+            });
+        }
+
+        return Ok(new AuthorCreateResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Author added succsufully",
             Data = await _authorCreate.CreateAuthorAsync(authorCreate),
-            Messages = "Author added succsufully"
-        };
-
-        return Ok(response);
+        });
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<DeleteAuthorResponse>> DeleteAuthorAsync(Guid id)
     {
-        var response = new DeleteAuthorResponse()
+        if(id == Guid.Empty)
+        {
+            return BadRequest(new DeleteAuthorResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = "Id is empty",
+                Data = false,
+            });
+        }
+
+        return Ok(new DeleteAuthorResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Author deleted succsufully",
             Data = await _authorDelete.DeleteAuthorAsync(id),
-            Messages = "Author deleted succsufully"
-        };
-
-        return Ok(response);
+        });
     }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<UpdateAuthorResponse>> UpdateAuthorAsync(Guid id, AuthorUpdateDto updateAuthor)
     {
+        if(id == Guid.Empty)
+        {
+            return BadRequest(new UpdateAuthorResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = "Id is empty",
+                Data = null,
+            });
+        }
+
+        if(updateAuthor == null)
+        {
+            return BadRequest(new UpdateAuthorResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = "Author is empty",
+                Data = null
+            });
+        }
+
         var response = new UpdateAuthorResponse()
         {
             Status = StatusResponse.Success,
+            Messages = "Author updated succsufully",
             Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor),
-            Messages = "Author updated succsufully"
         };
 
         return response;
