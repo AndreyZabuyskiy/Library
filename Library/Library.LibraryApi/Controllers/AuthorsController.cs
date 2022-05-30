@@ -15,19 +15,19 @@ public class AuthorsController : ControllerBase
     private readonly IDeleteAuthor _authorDelete;
     private readonly ICreateAuthor _authorCreate;
     private readonly IUpdateAuthor _authorUpdate;
+    private readonly ISearchAuthors _searchAuthors;
 
     public AuthorsController(
-        IGetAllAuthors getAllAuthors,
-        IGetAuthorById getAuthorById,
-        IDeleteAuthor authorDelete,
-        ICreateAuthor createAuthor,
-        IUpdateAuthor updateAuthor)
+        IGetAllAuthors getAllAuthors, IGetAuthorById getAuthorById,
+        IDeleteAuthor authorDelete, ICreateAuthor createAuthor,
+        IUpdateAuthor updateAuthor, ISearchAuthors searchAuthors)
     {
         _getAllAuthors = getAllAuthors;
         _getAuthorById = getAuthorById;
         _authorDelete = authorDelete;
         _authorCreate = createAuthor;
         _authorUpdate = updateAuthor;
+        _searchAuthors = searchAuthors;
     }
 
     [HttpGet]
@@ -53,7 +53,7 @@ public class AuthorsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<GetAuthorByIdResponse>> GetAuthorById(Guid id)
     {
-        if(id == Guid.Empty)
+        if (id == Guid.Empty)
         {
             return BadRequest(new GetAuthorByIdResponse()
             {
@@ -74,10 +74,23 @@ public class AuthorsController : ControllerBase
 
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return Problem(ex.Message);
         }
+    }
+
+    [HttpGet("search-authors")]
+    public async Task<ActionResult<SearchAuthorsResponse>> GetAuthorsBySearch(string str)
+    {
+        var response = new SearchAuthorsResponse()
+        {
+            Status = StatusResponse.Success,
+            Data = await _searchAuthors.SearchAuthorsAsync(str),
+            Messages = "Succsufully"
+        };
+
+        return Ok(response);
     }
 
     [HttpPost]

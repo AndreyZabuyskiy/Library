@@ -15,4 +15,5 @@ public interface IRepository
     public Task<AuthorRead> UpdateAuthorAsync(Guid id, AuthorUpdate authorUpdate);
     public Task<BookRead> CreateBookAsync(BookCreate bookCreate);
     public Task<BookRead> UpdateBookAsync(Guid id, BookUpdate bookUpdate);
+    public Task<List<AuthorRead>> SearchAuthorsByStringAsync(string str);
 }

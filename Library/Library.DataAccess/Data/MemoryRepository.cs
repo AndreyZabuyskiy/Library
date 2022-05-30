@@ -246,4 +246,23 @@ public class MemoryRepository : IRepository
             return book.AsBookRead();
         });
     }
+
+    public async Task<List<AuthorRead>> SearchAuthorsByStringAsync(string str)
+    {
+        return await Task.Run(() =>
+        {
+            var authors = new List<AuthorRead>();
+
+            foreach(var author in _authors)
+            {
+                if (author.FirstName.ToLower().Contains(str.ToLower()) 
+                    || author.LastName.ToLower().Contains(str.ToLower()))
+                {
+                    authors.Add(author.AsAuthorRead());
+                }
+            }
+
+            return authors;
+        });
+    }
 }

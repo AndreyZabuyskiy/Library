@@ -24,6 +24,7 @@ builder.Services.AddScoped<IGetAuthorById, AuthorsService>();
 builder.Services.AddScoped<IDeleteAuthor, AuthorsService>();
 builder.Services.AddScoped<ICreateAuthor, AuthorsService>();
 builder.Services.AddScoped<IUpdateAuthor, AuthorsService>();
+builder.Services.AddScoped<ISearchAuthors, AuthorsService>();
 
 builder.Services.AddScoped<IGetAllBooks, BookService>();
 builder.Services.AddScoped<IGetBookById, BookService>();
