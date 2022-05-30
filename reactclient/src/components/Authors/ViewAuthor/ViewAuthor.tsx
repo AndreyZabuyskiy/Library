@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchAuthorView } from "../../../redux/action-creators/authorView";
+import { Link } from "react-router-dom";
 
 const ViewAuthor: React.FC = () => {
   const {author, loading, error} = useTypesSelector(state => state.authorView);

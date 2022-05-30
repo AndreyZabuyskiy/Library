@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.LibraryApi", "Library.LibraryApi\Library.LibraryApi.csproj", "{09B40EB6-2798-4AFA-A19B-9BFBFF7D619F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.LibraryApi", "Library.LibraryApi\Library.LibraryApi.csproj", "{09B40EB6-2798-4AFA-A19B-9BFBFF7D619F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Domain", "Library.Domain\Library.Domain.csproj", "{8D7821B4-4F8A-4E5B-8B72-BB2084E50A44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Domain", "Library.Domain\Library.Domain.csproj", "{8D7821B4-4F8A-4E5B-8B72-BB2084E50A44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.DataAccess", "Library.DataAccess\Library.DataAccess.csproj", "{F05EF61D-FBCB-4782-85C6-1983023FE6E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.DataAccess", "Library.DataAccess\Library.DataAccess.csproj", "{F05EF61D-FBCB-4782-85C6-1983023FE6E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.BusinessLogic", "Library.BusinessLogic\Library.BusinessLogic.csproj", "{210C734C-5CF0-4ABA-9343-6A65200F5090}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.BusinessLogic", "Library.BusinessLogic\Library.BusinessLogic.csproj", "{210C734C-5CF0-4ABA-9343-6A65200F5090}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{15E896E4-7131-473E-B7F5-97F7AC01DA31}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
