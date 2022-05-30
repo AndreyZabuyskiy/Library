@@ -2,5 +2,6 @@
 
 public enum StatusResponse
 {
-    Success
+    Success,
+    Error
 }

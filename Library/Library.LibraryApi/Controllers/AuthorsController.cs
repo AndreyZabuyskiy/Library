@@ -32,15 +32,16 @@ public class AuthorsController : ControllerBase
 
     [HttpGet]
     public async Task<ActionResult<GetAllAuthorsResponse>> GetAuthors()
+    {
+        var response = new GetAllAuthorsResponse()
         {
-            var response = new GetAllAuthorsResponse()
-            {
-                Status = StatusResponse.Success,
-                Data = await _getAllAuthors.GetAllAutors()
-            };
+            Status = StatusResponse.Success,
+            Data = await _getAllAuthors.GetAllAutors(),
+            Messages = "Succsufully"
+        };
 
-            return Ok(response);
-        }
+        return Ok(response);
+    }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<GetAuthorByIdResponse>> GetAuthorById(Guid id)
@@ -48,7 +49,8 @@ public class AuthorsController : ControllerBase
         var response = new GetAuthorByIdResponse()
         {
             Status = StatusResponse.Success,
-            Data = await _getAuthorById.GetAuthorById(id)
+            Data = await _getAuthorById.GetAuthorById(id),
+            Messages = "Succsufully"
         };
 
         return Ok(response);
@@ -60,7 +62,8 @@ public class AuthorsController : ControllerBase
         var response = new AuthorCreateResponse()
         {
             Status = StatusResponse.Success,
-            Data = await _authorCreate.CreateAuthorAsync(authorCreate)
+            Data = await _authorCreate.CreateAuthorAsync(authorCreate),
+            Messages = "Author added succsufully"
         };
 
         return Ok(response);
@@ -68,25 +71,27 @@ public class AuthorsController : ControllerBase
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<DeleteAuthorResponse>> DeleteAuthorAsync(Guid id)
+    {
+        var response = new DeleteAuthorResponse()
         {
-            var response = new DeleteAuthorResponse()
-            {
-                Status = StatusResponse.Success,
-                Data = await _authorDelete.DeleteAuthorAsync(id)
-            };
+            Status = StatusResponse.Success,
+            Data = await _authorDelete.DeleteAuthorAsync(id),
+            Messages = "Author deleted succsufully"
+        };
 
-            return Ok(response);
-        }
+        return Ok(response);
+    }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<UpdateAuthorResponse>> UpdateAuthorAsync(Guid id, AuthorUpdateDto updateAuthor)
+    {
+        var response = new UpdateAuthorResponse()
         {
-            var response = new UpdateAuthorResponse()
-            {
-                Status = StatusResponse.Success,
-                Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor)
-            };
+            Status = StatusResponse.Success,
+            Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor),
+            Messages = "Author updated succsufully"
+        };
 
-            return response;
-        }
+        return response;
+    }
 }
