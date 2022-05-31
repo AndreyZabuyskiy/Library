@@ -247,7 +247,7 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<List<AuthorRead>> SearchAuthorsByStringAsync(string str)
+    public async Task<List<AuthorRead>> SearchAuthorsByNameAsync(string str)
     {
         return await Task.Run(() =>
         {
@@ -263,6 +263,24 @@ public class MemoryRepository : IRepository
             }
 
             return authors;
+        });
+    }
+
+    public async Task<List<BookRead>> SearchBooksByTitleAsync(string str)
+    {
+        return await Task.Run(() =>
+        {
+            var books = new List<BookRead>();
+
+            foreach(var book in _books)
+            {
+                if (book.Title.ToLower().Contains(str.ToLower()))
+                {
+                    books.Add(book.AsBookRead());
+                }
+            }
+
+            return books;
         });
     }
 }

@@ -55,7 +55,7 @@ public class AuthorsService : IGetAllAuthors, IGetAuthorById, IDeleteAuthor, ICr
 
     public async Task<List<AuthorReadDto>> SearchAuthorsAsync(string str)
     {
-        var authorsModel = await _repository.SearchAuthorsByStringAsync(str);
+        var authorsModel = await _repository.SearchAuthorsByNameAsync(str);
         var authorsDto = new List<AuthorReadDto>();
 
         foreach(var author in authorsModel)

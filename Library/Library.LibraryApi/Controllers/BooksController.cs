@@ -15,19 +15,19 @@ public class BooksController : ControllerBase
     private readonly IDeleteBook _deleteBook;
     private readonly IUpdateBook _updateBook;
     private readonly ICreateBook _createBook;
+    private readonly ISearchBooks _searchBooks;
 
     public BooksController(
-        IGetAllBooks getAllBooks,
-        IGetBookById getBookById,
-        IDeleteBook deleteBook,
-        IUpdateBook updateBook,
-        ICreateBook createBook)
+        IGetAllBooks getAllBooks, IGetBookById getBookById,
+        IDeleteBook deleteBook, IUpdateBook updateBook,
+        ICreateBook createBook, ISearchBooks searchBooks)
     {
         _getAllBooks = getAllBooks;
         _getBookById = getBookById;
         _deleteBook = deleteBook;   
         _updateBook = updateBook;
         _createBook = createBook;
+        _searchBooks = searchBooks;
     }
 
     [HttpGet]
@@ -78,6 +78,19 @@ public class BooksController : ControllerBase
         {
             return Problem(ex.Message);
         }
+    }
+
+    [HttpGet("search-books")]
+    public async Task<ActionResult<SearchBooksResponse>> SearchBooksAsync(string str)
+    {
+        var response = new SearchBooksResponse()
+        {
+            Status = StatusResponse.Success,
+            Data = await _searchBooks.SearchBooksAsync(str),
+            Messages = "Succsufully"
+        };
+
+        return Ok(response);
     }
     
     [HttpPost]
