@@ -1,7 +1,7 @@
 ﻿using Library.BusinessLogic.Dtos;
 using Library.BusinessLogic.UseCases;
 using Library.LibraryApi.ResponseApi;
-using Library.LibraryApi.ResponseApi.Responses;
+using Library.LibraryApi.ResponseApi.Responses.AuthorsResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.LibraryApi.Controllers;

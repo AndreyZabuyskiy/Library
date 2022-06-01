@@ -1,6 +1,6 @@
 ﻿namespace Library.DataAccess.Entities;
 
-public class BookUpdate
+public class BookUpdateModel
 {
     public string Title { get; set; }
     public string Description { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Library.DataAccess.Entities;
 
-public class AuthorOverviewInfo
+public class AuthorReadModel
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; }

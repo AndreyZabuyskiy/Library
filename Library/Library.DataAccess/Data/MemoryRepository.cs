@@ -60,18 +60,18 @@ public class MemoryRepository : IRepository
         },
     };
 
-    public async Task<AuthorView> GetAuthorById(Guid id)
+    public async Task<AuthorViewModel> GetAuthorById(Guid id)
     {
         return await Task.Run(() =>
         {
             var author = _authors.FirstOrDefault(a => a.Id == id);
-            var books = new List<BookOverviewInfo>();
+            var books = new List<BookOverviewInfoModel>();
 
             foreach (var book in _books)
             {
                 if(book.Author.Id == author.Id)
                 {
-                    books.Add(new BookOverviewInfo()
+                    books.Add(new BookOverviewInfoModel()
                     {
                         Id = book.Id,
                         Title = book.Title
@@ -79,7 +79,7 @@ public class MemoryRepository : IRepository
                 }
             }
 
-            var authorView = new AuthorView()
+            var authorView = new AuthorViewModel()
             {
                 Id = author.Id,
                 FirstName = author.FirstName,
@@ -103,11 +103,11 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<IEnumerable<AuthorRead>> GetAuthorsAll()
+    public async Task<IEnumerable<AuthorReadModel>> GetAuthorsAll()
     {
         return await Task.Run(() =>
         {
-            var authors = new List<AuthorRead>();
+            var authors = new List<AuthorReadModel>();
 
             foreach (var author in _authors)
             {
@@ -118,13 +118,13 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public Task<BookView> GetBookById(Guid id)
+    public Task<BookViewModel> GetBookById(Guid id)
     {
         return Task.Run(() =>
         {
             var book = _books.FirstOrDefault(b => b.Id == id);
 
-            return new BookView()
+            return new BookViewModel()
             {
                 Id = book.Id,
                 Title = book.Title,
@@ -132,7 +132,7 @@ public class MemoryRepository : IRepository
                 Price = book.Price,
                 NumberOfPages = book.NumberOfPages,
                 YearOfPublication = book.YearOfPublication,
-                Author = new AuthorOverviewInfo()
+                Author = new AuthorOverviewInfoModel()
                 {
                     Id = book.Author.Id,
                     FirstName = book.Author.FirstName,
@@ -142,11 +142,11 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<IEnumerable<BookRead>> GetBooksAll()
+    public async Task<IEnumerable<BookReadModel>> GetBooksAll()
     {
         return await Task.Run(() => 
         {
-            var books = new List<BookRead>();
+            var books = new List<BookReadModel>();
 
             foreach (var book in _books)
             {
@@ -185,7 +185,7 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<AuthorRead> CreateAuthorAsync(AuthorCreate authorCreate)
+    public async Task<AuthorReadModel> CreateAuthorAsync(AuthorCreateModel authorCreate)
     {
         return await Task.Run(() =>
         {
@@ -203,7 +203,7 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<AuthorRead> UpdateAuthorAsync(Guid id, AuthorUpdate authorUpdate)
+    public async Task<AuthorReadModel> UpdateAuthorAsync(Guid id, AuthorUpdateModel authorUpdate)
     {
         return await Task.Run(() =>
         {
@@ -213,7 +213,7 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<BookRead> UpdateBookAsync(Guid id, BookUpdate bookUpdate)
+    public async Task<BookReadModel> UpdateBookAsync(Guid id, BookUpdateModel bookUpdate)
     {
         return await Task.Run(() =>
         {
@@ -223,7 +223,7 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<BookRead> CreateBookAsync(BookCreate bookCreate)
+    public async Task<BookReadModel> CreateBookAsync(BookCreateModel bookCreate)
     {
         return await Task.Run(() =>
         {
@@ -247,11 +247,11 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<List<AuthorRead>> SearchAuthorsByNameAsync(string str)
+    public async Task<List<AuthorReadModel>> SearchAuthorsByNameAsync(string str)
     {
         return await Task.Run(() =>
         {
-            var authors = new List<AuthorRead>();
+            var authors = new List<AuthorReadModel>();
 
             foreach(var author in _authors)
             {
@@ -266,11 +266,11 @@ public class MemoryRepository : IRepository
         });
     }
 
-    public async Task<List<BookRead>> SearchBooksByTitleAsync(string str)
+    public async Task<List<BookReadModel>> SearchBooksByTitleAsync(string str)
     {
         return await Task.Run(() =>
         {
-            var books = new List<BookRead>();
+            var books = new List<BookReadModel>();
 
             foreach(var book in _books)
             {

@@ -1,6 +1,6 @@
 ﻿using Library.BusinessLogic.Dtos;
 
-namespace Library.LibraryApi.ResponseApi.Responses;
+namespace Library.LibraryApi.ResponseApi.Responses.AuthorsResponses;
 
 public class SearchAuthorsResponse : IResponseApi<List<AuthorReadDto>>
 {

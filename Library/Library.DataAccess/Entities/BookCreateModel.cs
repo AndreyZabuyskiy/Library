@@ -1,6 +1,6 @@
 ﻿namespace Library.DataAccess.Entities;
 
-public class BookCreate
+public class BookCreateModel
 {
     public Guid AuthorId { get; set; }
     public string Title { get; set; }

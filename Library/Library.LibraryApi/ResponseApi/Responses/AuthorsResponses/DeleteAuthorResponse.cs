@@ -1,6 +1,6 @@
-﻿namespace Library.LibraryApi.ResponseApi.Responses;
+﻿namespace Library.LibraryApi.ResponseApi.Responses.AuthorsResponses;
 
-public class DeleteBookResponse : IResponseApi<bool>
+public class DeleteAuthorResponse : IResponseApi<bool>
 {
     public StatusResponse Status { get; set; }
     public bool Data { get; set; }

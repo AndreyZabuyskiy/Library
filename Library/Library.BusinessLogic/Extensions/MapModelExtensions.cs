@@ -5,7 +5,7 @@ namespace Library.BusinessLogic.Extensions;
 
 internal static class MapModelExtensions
 {
-    public static AuthorReadDto AsAuthorReadDto(this AuthorRead author, int count)
+    public static AuthorReadDto AsAuthorReadDto(this AuthorReadModel author, int count)
     {
         return new AuthorReadDto
         {
@@ -16,7 +16,7 @@ internal static class MapModelExtensions
         };
     }
 
-    public static BookReadDto AsBookReadDto(this BookRead book)
+    public static BookReadDto AsBookReadDto(this BookReadModel book)
     {
         return new BookReadDto
         {
@@ -26,7 +26,7 @@ internal static class MapModelExtensions
         };
     }
 
-    public static AuthorViewDto AsAuthorViewDto(this AuthorView author)
+    public static AuthorViewDto AsAuthorViewDto(this AuthorViewModel author)
     {
         var books = new List<BookOverviewInfoDto>();
 
@@ -50,7 +50,7 @@ internal static class MapModelExtensions
         };
     }
 
-    public static BookViewDto AsBookViewDto(this BookView book)
+    public static BookViewDto AsBookViewDto(this BookViewModel book)
     {
         return new BookViewDto()
         {
@@ -69,9 +69,9 @@ internal static class MapModelExtensions
         };
     }
 
-    public static AuthorCreate AsAuthorCreate(this AuthorCreateDto author)
+    public static AuthorCreateModel AsAuthorCreate(this AuthorCreateDto author)
     {
-        return new AuthorCreate
+        return new AuthorCreateModel
         {
             FirstName = author.FirstName,
             LastName = author.LastName,
@@ -80,18 +80,18 @@ internal static class MapModelExtensions
         };
     }
 
-    public static AuthorUpdate AsAuthorUpdate(this AuthorUpdateDto author)
+    public static AuthorUpdateModel AsAuthorUpdate(this AuthorUpdateDto author)
     {
-        return new AuthorUpdate
+        return new AuthorUpdateModel
         {
             FirstName = author.FirstName,
             LastName = author.LastName
         };
     }
 
-    public static BookUpdate AsBookUpdate(this BookUpdateDto book)
+    public static BookUpdateModel AsBookUpdate(this BookUpdateDto book)
     {
-        return new BookUpdate()
+        return new BookUpdateModel()
         {
             Title = book.Title,
             Description = book.Description,
@@ -101,9 +101,9 @@ internal static class MapModelExtensions
         };
     }
 
-    public static BookCreate AsBookCreate(this BookCreateDto book)
+    public static BookCreateModel AsBookCreate(this BookCreateDto book)
     {
-        return new BookCreate()
+        return new BookCreateModel()
         {
             AuthorId = book.AuthorId,
             Title = book.Title,

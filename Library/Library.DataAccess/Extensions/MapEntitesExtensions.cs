@@ -5,9 +5,9 @@ namespace Library.DataAccess.Extensions;
 
 internal static class MapEntitesExtensions
 {
-    public static AuthorRead AsAuthorRead(this Author author)
+    public static AuthorReadModel AsAuthorRead(this Author author)
     {
-        return new AuthorRead()
+        return new AuthorReadModel()
         {
             Id = author.Id,
             FirstName = author.FirstName,
@@ -15,9 +15,9 @@ internal static class MapEntitesExtensions
         };
     }
 
-    public static BookRead AsBookRead(this Book book)
+    public static BookReadModel AsBookRead(this Book book)
     {
-        return new BookRead()
+        return new BookReadModel()
         {
             Id = book.Id,
             Title = book.Title,
@@ -25,13 +25,13 @@ internal static class MapEntitesExtensions
         };
     }
 
-    public static void Update(this Author author, AuthorUpdate authorUpdate)
+    public static void Update(this Author author, AuthorUpdateModel authorUpdate)
     {
         author.FirstName = authorUpdate.FirstName;
         author.LastName = authorUpdate.LastName;
     }
 
-    public static void Update(this Book book, BookUpdate bookUpdate)
+    public static void Update(this Book book, BookUpdateModel bookUpdate)
     {
         book.Title = bookUpdate.Title;
         book.Description = bookUpdate.Description;
