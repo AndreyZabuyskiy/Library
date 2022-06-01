@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useTypesSelector } from "../../hooks/useTypeSelector";
@@ -6,11 +6,19 @@ import { fetchAuthors, fetchDeleteAuthors } from "../../redux/action-creators/au
 
 const Authors: React.FC = () => {
   const {authors, error, loading} = useTypesSelector(state => state.authors);
+
+  const [searchAuthor, setSearchAuthor] = useState('');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchAuthors())
   }, []);
+
+  const changeHandlerSearchAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchAuthor(e.target.value);
+    console.log(searchAuthor);
+  }
 
   if(loading) {
     return <h1>Идет загрузка...</h1>
@@ -26,14 +34,14 @@ const Authors: React.FC = () => {
         <Link to="/authors">Авторы</Link>
         <Link to="/books">Книги</Link>
 
-        {renderAuthorsTable()}
-      </div>
-    </div>
-  );
+        <div className="table-responsive mt-5">
+        <div className="form-group">
+          <input type="text" value={searchAuthor} onChange={changeHandlerSearchAuthor}
+            className="form-control" placeholder="search authors..." />
+        </div>
 
-  function renderAuthorsTable() {
-    return (
-      <div className="table-responsive mt-5">
+        <br />
+        
         <table className="table table-bordered border-dark">
           <thead>
             <tr>
@@ -61,14 +69,15 @@ const Authors: React.FC = () => {
                       View
                     </Link>
                   </td>
-              </tr>
-              ))
-            }
-          </tbody>
-        </table>
+                </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Authors;

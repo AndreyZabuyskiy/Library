@@ -37,40 +37,29 @@ const CreateAuthorForm: React.FC = () => {
   return (
     <div className="container">
       <div className="form-group">
-        <input type="text" value={firstName}
-          onChange={changeHandlerFirstName}
-          className="form-control"
-          placeholder="first name" />
+        <input type="text" value={firstName} onChange={changeHandlerFirstName}
+          className="form-control" placeholder="first name" />
       </div>
 
       <br />
 
       <div className="form-group">
-        <input type="text"
-          value={lastName}
-          onChange={changeHandlerLastName}
-          className="form-control"
-          placeholder="last name" />
+        <input type="text" value={lastName} onChange={changeHandlerLastName}
+        className="form-control" placeholder="last name" />
       </div>
 
       <br />
 
       <div className="form-group">
-        <DatePicker className="form-control"
-        selected={dateOfBirth}
-        onChange={setDateOfBirth}
-        dateFormat="MM/dd/yyyy" />
+        <DatePicker className="form-control" selected={dateOfBirth}
+        onChange={setDateOfBirth} dateFormat="MM/dd/yyyy" />
       </div>
 
       <br />
       
       <div className="form-group">
-        <button type="button"
-        className="btn btn-success form-control"
-        placeholder="date of birth"
-        onClick={clickHandler}>
-          Create
-        </button>
+        <button type="button" className="btn btn-success form-control"
+        placeholder="date of birth" onClick={clickHandler}> Create </button>
       </div>
     </div>
   );

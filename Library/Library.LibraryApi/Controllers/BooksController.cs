@@ -24,7 +24,7 @@ public class BooksController : ControllerBase
     {
         _getAllBooks = getAllBooks;
         _getBookById = getBookById;
-        _deleteBook = deleteBook;   
+        _deleteBook = deleteBook;
         _updateBook = updateBook;
         _createBook = createBook;
         _searchBooks = searchBooks;
