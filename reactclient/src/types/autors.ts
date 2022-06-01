@@ -8,7 +8,10 @@ export enum AuthorsActionTypes {
   FETCH_AUTHORS = 'FETCH_AUTHORS',
   FETCH_AUTHORS_SUCCESS = 'FETCH_AUTHORS_SUCCESS',
   FETCH_AUTHORS_ERROR = 'FETCH_AUTHORS_ERROR',
-  FETCH_AUTHORS_DELETE = 'FETCH_AUTHORS_DELETE'
+  FETCH_AUTHORS_DELETE = 'FETCH_AUTHORS_DELETE',
+  FETCH_SEARCH_AUTHORS = 'FETCH_SEARCH_AUTHORS',
+  FETCH_SEARCH_SUCCESS_AUTHORS = 'FETCH_SEARCH_SUCCESS_AUTHORS',
+  FETCH_SEARCH_ERROR_AUTHORS = 'FETCH_SEARCH_ERROR_AUTHORS'
 }
 
 export interface FetchAuthorsAction {
@@ -29,7 +32,24 @@ export interface FetchDeleteAction {
   type: AuthorsActionTypes.FETCH_AUTHORS_DELETE;
 }
 
-export type AuthorsAction = FetchAuthorsAction 
+export interface FetchSearchAuthorsAction {
+  type: AuthorsActionTypes.FETCH_SEARCH_AUTHORS;
+}
+
+export interface FetchSearchAuthorsSuccessAction {
+  type: AuthorsActionTypes.FETCH_SEARCH_SUCCESS_AUTHORS;
+  payload: any[]
+}
+
+export interface FetchSearchAuthorsErrorAction {
+  type: AuthorsActionTypes.FETCH_SEARCH_ERROR_AUTHORS;
+  payload: string
+}
+
+export type AuthorsAction = FetchAuthorsAction
   | FetchAuthorsErrorAction 
   | FetchAuthorsSuccessAction
   | FetchDeleteAction
+  | FetchSearchAuthorsAction
+  | FetchSearchAuthorsSuccessAction
+  | FetchSearchAuthorsErrorAction

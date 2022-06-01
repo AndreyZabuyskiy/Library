@@ -36,6 +36,27 @@ export const authorReducer = (state = initialState, action: AuthorsAction): IAut
           authors: []
         };
 
+      case AuthorsActionTypes.FETCH_SEARCH_AUTHORS:
+        return {
+          loading: false,
+          error: null,
+          authors: []
+        };
+
+      case AuthorsActionTypes.FETCH_SEARCH_SUCCESS_AUTHORS:
+        return {
+          loading: false,
+          error: null,
+          authors: action.payload
+        };
+
+      case AuthorsActionTypes.FETCH_SEARCH_ERROR_AUTHORS:
+        return {
+          loading: false,
+          error: action.payload,
+          authors: []
+        };
+
     default:
       return state;
   }

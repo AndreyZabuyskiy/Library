@@ -40,3 +40,24 @@ export function fetchDeleteAuthors (id: any): any {
     }
   }
 }
+
+export function fetchSearchAuthors (searchAuthors: string): any {
+  return async (dispatch: Dispatch<AuthorsAction>) => {
+    try{
+      dispatch({
+        type: AuthorsActionTypes.FETCH_SEARCH_AUTHORS        
+      });
+      const response = await axios.get(`https://localhost:7068/api/Authors/search-authors?str=${searchAuthors}`);
+      dispatch({
+        type: AuthorsActionTypes.FETCH_SEARCH_SUCCESS_AUTHORS,
+        payload: response.data.data
+      });
+    }
+    catch(e) {
+      dispatch({
+        type: AuthorsActionTypes.FETCH_AUTHORS_ERROR,
+        payload: 'Ошибка при поиске'
+      });
+    }
+  }
+}
