@@ -51,6 +51,7 @@ const CreateBookForm: React.FC = () => {
 
   return (
     <div className="container">
+      <h1 className="col d-flex flex-column justify-content-center align-items-center">Add book</h1>
       <div className="form-group">
             <input type="text" value={title} onChange={changeHandlerTitle} className="form-control" placeholder="title" />
           </div>

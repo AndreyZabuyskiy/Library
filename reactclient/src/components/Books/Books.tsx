@@ -39,6 +39,10 @@ const Books: React.FC = () => {
             <input type="text" value={bookSearchText} onChange={changeHandlerSearchAuthor}
               className="form-control" placeholder="search books..." />
           </div>
+          <br />
+          <div className="form-group">
+            <Link to='/create-book' className="btn btn-primary form-control"> Add </Link>
+          </div>
           
           {renderBooksTable()}
         </div>

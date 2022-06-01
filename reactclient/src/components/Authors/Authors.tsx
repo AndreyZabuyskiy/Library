@@ -39,9 +39,11 @@ const Authors: React.FC = () => {
             <input type="text" value={searchAuthor} onChange={changeHandlerSearchAuthor}
               className="form-control" placeholder="search authors..." />
           </div>
-
           <br />
-        
+          <div className="form-group">
+            <Link to='/create-author' className="btn btn-primary form-control"> Add </Link>
+          </div>
+              
           { renderAuthorList() }
         </div>
       </div>

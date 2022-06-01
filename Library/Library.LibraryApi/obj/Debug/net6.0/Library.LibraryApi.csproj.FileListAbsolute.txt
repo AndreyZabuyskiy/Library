@@ -30,3 +30,4 @@ D:\Программирование\Projects\Library\Library\Library.LibraryApi\
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.pdb
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.genruntimeconfig.cache
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\ref\Library.LibraryApi.dll
+D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.MvcApplicationPartsAssemblyInfo.cs
