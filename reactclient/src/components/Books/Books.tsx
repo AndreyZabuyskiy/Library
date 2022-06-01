@@ -1,19 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useTypesSelector } from "../../hooks/useTypeSelector";
-import { fetchBooks, fetchDeleteBook } from "../../redux/action-creators/books";
+import { fetchBooks, fetchDeleteBook, fetchSearchBooks } from "../../redux/action-creators/books";
 
 const Books: React.FC = () => {
   const { books, error, loading } = useTypesSelector(state => state.books);
+  const [bookSearchText, setBookSearchText] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBooks())
   }, []);
 
-  if(loading) {
-    return <h1>Идет загрузка...</h1>
+  const changeHandlerSearchAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBookSearchText(e.target.value);
+
+    if(e.target.value !== ''){
+      dispatch(fetchSearchBooks(e.target.value));      
+    }
+    else {
+      dispatch(fetchBooks());
+    }
   }
 
   if(error){
@@ -26,12 +34,23 @@ const Books: React.FC = () => {
         <Link to="/authors">Авторы</Link>
         <Link to="/books">Книги</Link>
 
-        {renderBooksTable()}
+        <div className="table-responsive mt-5">
+          <div className="form-group">
+            <input type="text" value={bookSearchText} onChange={changeHandlerSearchAuthor}
+              className="form-control" placeholder="search books..." />
+          </div>
+          
+          {renderBooksTable()}
+        </div>
       </div>
     </div>
   )
 
   function renderBooksTable() {
+    if(loading) {
+      return <h1>Идет загрузка...</h1>
+    }
+
     return (
       <div className="table-responsive mt-5">
         <table className="table table-bordered border-dark">

@@ -41,3 +41,21 @@ export function fetchDeleteBook(id: any): any {
     }
   }
 }
+
+export function fetchSearchBooks (str: string): any {
+  return async (dispatch: Dispatch<BooksAction>) => {
+    try {
+      dispatch({
+        type: BooksActionTypes.FETCH_SEARCH_BOOKS
+      });
+
+      const response = await axios.get(`https://localhost:7068/api/Books/search-books?str=${str}`);
+      dispatch({type: BooksActionTypes.FETCH_SEARCH_BOOKS_SUCCESS, payload: response.data.data});
+    } catch (e) {
+      dispatch({
+        type: BooksActionTypes.FETCH_SEARCH_BOOKS_ERROR,
+        payload: 'Ошибка при поиске книг'
+      });
+    }
+  }
+}

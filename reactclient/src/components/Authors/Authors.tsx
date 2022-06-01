@@ -52,6 +52,7 @@ const Authors: React.FC = () => {
     if(loading){
       return <h1>Идет загрузка...</h1>
     }
+    
     return (
       <table className="table table-bordered border-dark">
         <thead>
