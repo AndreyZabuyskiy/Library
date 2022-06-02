@@ -283,4 +283,19 @@ public class MemoryRepository : IRepository
             return books;
         });
     }
+
+    public async Task<List<UpdateBook_AuthorsModel>> GetAuthorsForUpdateBook()
+    {
+        return await Task.Run(() =>
+        {
+            var authors = new List<UpdateBook_AuthorsModel>();
+
+            foreach (var author in _authors)
+            {
+                authors.Add(author.AsBook_AuthorsModel());
+            }
+
+            return authors;
+        });
+    }
 }

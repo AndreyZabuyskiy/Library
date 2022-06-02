@@ -1,6 +1,6 @@
-﻿namespace Library.DataAccess.Entities;
+﻿namespace Library.BusinessLogic.Dtos;
 
-public class AuthorReadModel
+public class UpdateBook_AuthorsDto
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; }

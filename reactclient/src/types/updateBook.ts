@@ -3,7 +3,8 @@ export interface IUpdateBookState {
   loading: boolean,
   error: null | string,
   bookUpdated: any,
-  isUpdateBook: boolean
+  isUpdateBook: boolean,
+  authors: any[] | null
 }
 
 export enum UpdateBookTypes {
@@ -21,7 +22,8 @@ export interface LoadBookAction {
 
 export interface LoadBookSuccessAction {
   type: UpdateBookTypes.LOAD_BOOK_SUCCESS,
-  payload: any
+  payloadBook: any,
+  payloadAuthors: any
 }
 
 export interface LoadBookErrorAction {
@@ -35,7 +37,8 @@ export interface FetchUpdateBookAction {
 
 export interface FetchUpdateBookSuccessAction {
   type: UpdateBookTypes.FETCH_UPDATE_BOOK_SUCCESS,
-  payload: any
+  payloadBook: any,
+  payloadAuthors: any
 }
 
 export interface FetchUpdateBookErrorAction {

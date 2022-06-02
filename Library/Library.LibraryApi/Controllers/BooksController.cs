@@ -16,11 +16,13 @@ public class BooksController : ControllerBase
     private readonly IUpdateBook _updateBook;
     private readonly ICreateBook _createBook;
     private readonly ISearchBooks _searchBooks;
+    private readonly IGetAuthors_BookUpdate _getAuthors;
 
     public BooksController(
         IGetAllBooks getAllBooks, IGetBookById getBookById,
         IDeleteBook deleteBook, IUpdateBook updateBook,
-        ICreateBook createBook, ISearchBooks searchBooks)
+        ICreateBook createBook, ISearchBooks searchBooks,
+        IGetAuthors_BookUpdate getAuthors)
     {
         _getAllBooks = getAllBooks;
         _getBookById = getBookById;
@@ -28,6 +30,7 @@ public class BooksController : ControllerBase
         _updateBook = updateBook;
         _createBook = createBook;
         _searchBooks = searchBooks;
+        _getAuthors = getAuthors;
     }
 
     [HttpGet]
@@ -191,5 +194,18 @@ public class BooksController : ControllerBase
         {
             return Problem(ex.Message);
         }
+    }
+
+    [HttpGet("get-authors")]
+    public async Task<ActionResult<GetAuthors_UpdateBookResponse>> GetAuthors_UpdateBook()
+    {
+        var response = new GetAuthors_UpdateBookResponse()
+        {
+            Status = StatusResponse.Success,
+            Data = await _getAuthors.GetAuthors_BookUpdate(),
+            Messages = "Get authors successfully"
+        };
+
+        return Ok(response);
     }
 }

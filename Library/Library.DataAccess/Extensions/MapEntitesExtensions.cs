@@ -25,6 +25,16 @@ internal static class MapEntitesExtensions
         };
     }
 
+    public static UpdateBook_AuthorsModel AsBook_AuthorsModel(this Author author)
+    {
+        return new UpdateBook_AuthorsModel()
+        {
+            Id = author.Id,
+            FirstName = author.FirstName,
+            LastName = author.LastName
+        };
+    }
+
     public static void Update(this Author author, AuthorUpdateModel authorUpdate)
     {
         author.FirstName = authorUpdate.FirstName;

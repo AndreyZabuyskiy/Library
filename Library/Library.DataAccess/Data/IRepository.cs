@@ -17,4 +17,5 @@ public interface IRepository
     public Task<BookReadModel> UpdateBookAsync(Guid id, BookUpdateModel bookUpdate);
     public Task<List<AuthorReadModel>> SearchAuthorsByNameAsync(string str);
     public Task<List<BookReadModel>> SearchBooksByTitleAsync(string str);
+    public Task<List<UpdateBook_AuthorsModel>> GetAuthorsForUpdateBook();
 }

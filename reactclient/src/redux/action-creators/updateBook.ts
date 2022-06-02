@@ -10,11 +10,7 @@ export function loadBook(id: any): any {
       });
       
       const response = await axios.get('https://localhost:7068/api/Books/' + id);
-
-      dispatch({
-        type: UpdateBookTypes.LOAD_BOOK_SUCCESS,
-        payload: response.data.data
-      });
+      dispatch({ type: UpdateBookTypes.LOAD_BOOK_SUCCESS, payload: response.data.data });
     }
     catch (e) {
       dispatch({

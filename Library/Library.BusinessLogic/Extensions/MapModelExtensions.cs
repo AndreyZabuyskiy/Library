@@ -113,4 +113,14 @@ internal static class MapModelExtensions
             YearOfPublication = book.YearOfPublication
         };
     }
+
+    public static UpdateBook_AuthorsDto AsUpdateBook_AuthorsDto(this UpdateBook_AuthorsModel book)
+    {
+        return new UpdateBook_AuthorsDto()
+        {
+            Id = book.Id,
+            FirstName = book.FirstName,
+            LastName = book.LastName
+        };
+    }
 }

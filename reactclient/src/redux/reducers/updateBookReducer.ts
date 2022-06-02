@@ -5,7 +5,8 @@ const initialState: IUpdateBookState = {
   loading: false,
   error: null,
   isUpdateBook: false,
-  bookUpdated: null
+  bookUpdated: null,
+  authors: null
 }
 
 export const updateBookReducer = (state = initialState, action: UpdateBookAction): IUpdateBookState => {
@@ -16,7 +17,8 @@ export const updateBookReducer = (state = initialState, action: UpdateBookAction
         error: null,
         book: null,
         isUpdateBook: false,
-        bookUpdated: null
+        bookUpdated: null,
+        authors: null
       }
     }
 
@@ -24,9 +26,10 @@ export const updateBookReducer = (state = initialState, action: UpdateBookAction
       return {
         loading: false,
         error: null,
-        book: action.payload,
+        book: action.payloadBook,
         isUpdateBook: false,
-        bookUpdated: null
+        bookUpdated: null,
+        authors: action.payloadAuthors
       }
     }
 
@@ -36,7 +39,8 @@ export const updateBookReducer = (state = initialState, action: UpdateBookAction
         error: action.payload,
         book: null,
         isUpdateBook: false,
-        bookUpdated: null
+        bookUpdated: null,
+        authors: null
       }
     }
 
@@ -46,7 +50,8 @@ export const updateBookReducer = (state = initialState, action: UpdateBookAction
         error: null,
         book: null,
         isUpdateBook: false,
-        bookUpdated: null
+        bookUpdated: null,
+        authors: null
       }
     }
 
@@ -54,9 +59,10 @@ export const updateBookReducer = (state = initialState, action: UpdateBookAction
       return {
         loading: false,
         error: null,
-        book: action.payload,
+        book: action.payloadBook,
         isUpdateBook: true,
-        bookUpdated: action.payload
+        bookUpdated: action.payloadBook,
+        authors: action.payloadAuthors
       }
     }
 
@@ -66,7 +72,8 @@ export const updateBookReducer = (state = initialState, action: UpdateBookAction
         error: action.payload,
         book: null,
         isUpdateBook: false,
-        bookUpdated: null
+        bookUpdated: null,
+        authors: null
       }
     }
 

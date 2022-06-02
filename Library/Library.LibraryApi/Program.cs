@@ -32,6 +32,7 @@ builder.Services.AddScoped<IDeleteBook, BookService>();
 builder.Services.AddScoped<IUpdateBook, BookService>();
 builder.Services.AddScoped<ICreateBook, BookService>();
 builder.Services.AddScoped<ISearchBooks, BookService>();
+builder.Services.AddScoped<IGetAuthors_BookUpdate, BookService>();
 
 var app = builder.Build();
 
