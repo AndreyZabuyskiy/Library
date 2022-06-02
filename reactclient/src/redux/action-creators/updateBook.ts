@@ -9,8 +9,14 @@ export function loadBook(id: any): any {
         type: UpdateBookTypes.LOAD_BOOK
       });
       
-      const response = await axios.get('https://localhost:7068/api/Books/' + id);
-      dispatch({ type: UpdateBookTypes.LOAD_BOOK_SUCCESS, payload: response.data.data });
+      const bookResponse = await axios.get('https://localhost:7068/api/Books/' + id);
+      const authorsResponse = await axios.get('https://localhost:7068/api/Books/get-authors');
+      
+      dispatch({
+        type: UpdateBookTypes.LOAD_BOOK_SUCCESS,
+        payloadBook: bookResponse.data.data,
+        payloadAuthors: authorsResponse.data.data
+      });
     }
     catch (e) {
       dispatch({
@@ -27,12 +33,14 @@ export function fetchUpdateBook(id: any, book: any): any {
       dispatch({
         type: UpdateBookTypes.FETCH_UPDATE_BOOK
       });
-
-      const response = await axios.put(`https://localhost:7068/api/Books/${id}`, book);
+      
+      const updateBookResponse = await axios.put(`https://localhost:7068/api/Books/${id}`, book);
+      const authorsResponse = await axios.get('https://localhost:7068/api/Books/get-authors');
 
       dispatch({
         type: UpdateBookTypes.FETCH_UPDATE_BOOK_SUCCESS,
-        payload: response.data.data
+        payloadBook: updateBookResponse.data.data,
+        payloadAuthors: authorsResponse.data.data
       });
       alert(`${book.title} обновлен!`)
     }

@@ -5,7 +5,7 @@ import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchUpdateBook, loadBook } from "../../../redux/action-creators/updateBook";
 
 const UpdateBookForm: React.FC = () => {
-  const { book, loading, error, isUpdateBook, bookUpdated } = useTypesSelector(state =>
+  const { book, loading, error, isUpdateBook, bookUpdated, authors } = useTypesSelector(state =>
     state.updateBook);
   
   const {id} = useParams();
@@ -16,6 +16,7 @@ const UpdateBookForm: React.FC = () => {
   const [price, setPrice] = useState<number>();
   const [numberOfPage, setNumberOfPage] = useState<number>();
   const [yearOfPublication, setYearOfPublication] = useState<number>();
+  const [authorId, setAuthorId] = useState<any>();
 
   useEffect(() => {
     dispatch(loadBook(id))
@@ -41,13 +42,14 @@ const UpdateBookForm: React.FC = () => {
     setYearOfPublication(Number(e.target.value));
   }
 
-  const clickHandler = (e: React.MouseEvent) => {
+  const clickHandlerUpdate = (e: React.MouseEvent) => {
     dispatch(fetchUpdateBook(book.id, {
       title,
       description,
       price,
       numberOfPage,
-      yearOfPublication
+      yearOfPublication,
+      authorId
     }));
   }
 
@@ -76,13 +78,54 @@ const UpdateBookForm: React.FC = () => {
             <input type="number" value={yearOfPublication} onChange={changeHandlerYear} className="form-control" placeholder="year of publication" />
           </div>
           <br />
+          <div>
+            <table className="table table-bordered border-dark">
+              <thead>
+                <tr>
+                  <th scope='col'>FirstName</th>
+                  <th scope='col'>LastName</th>
+                  <th scope='col'>Operation</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderAuthors()}
+              </tbody>
+            </table>
+          </div>
+          <br />
           <div className="form-group">
-            <button type="button" onClick={clickHandler} className="btn btn-success form-control">Update</button>
+            <button type="button" onClick={clickHandlerUpdate} className="btn btn-success form-control">Update</button>
           </div>
         </div>
       )}
     </div>
   );
+
+  function renderAuthors() {
+    if(authors){
+      const authorsFilters = authors?.filter(author => author.id !== book.author.id);
+
+      return (
+        <>
+          {authorsFilters?.map(author => (
+          <tr>
+            <td scope="row"> { author.firstName } </td>
+            <td> { author.lastName } </td>
+            <td>
+              <div className="form-group">
+                <button type="button"
+                onClick={() => setAuthorId(author.id)}
+                className="btn btn-success form-control">
+                  Select
+                </button>
+              </div>
+            </td>
+          </tr>
+        ))}
+        </>
+      );
+    }
+  }
 }
 
 export default UpdateBookForm;

@@ -31,7 +31,7 @@ public class MemoryRepository : IRepository
         new Book()
         {
             Id = Guid.NewGuid(),
-            Author = _authors[0],
+            Author = _authors[1],
             Title = "Преступление и наказание",
             Description = "Преступление и наказание описание",
             Price = 170,
@@ -41,7 +41,7 @@ public class MemoryRepository : IRepository
         new Book()
         {
             Id = Guid.NewGuid(),
-            Author = _authors[1],
+            Author = _authors[0],
             Title = "Анна Каренина",
             Description = "Анна Каренина описание",
             Price = 260,
