@@ -11,11 +11,15 @@ export function loadBook(id: any): any {
       
       const bookResponse = await axios.get('https://localhost:7068/api/Books/' + id);
       const authorsResponse = await axios.get('https://localhost:7068/api/Books/get-authors');
+
+      const authors = authorsResponse.data.data;
+      const book = bookResponse.data.data;
+      const authorsFilter = authors.filter(author => author.id !== book.author.id);
       
       dispatch({
         type: UpdateBookTypes.LOAD_BOOK_SUCCESS,
         payloadBook: bookResponse.data.data,
-        payloadAuthors: authorsResponse.data.data
+        payloadAuthors: authorsFilter
       });
     }
     catch (e) {
@@ -35,14 +39,18 @@ export function fetchUpdateBook(id: any, book: any): any {
       });
       
       const updateBookResponse = await axios.put(`https://localhost:7068/api/Books/${id}`, book);
+      const bookResponse = await axios.get('https://localhost:7068/api/Books/' + id);
       const authorsResponse = await axios.get('https://localhost:7068/api/Books/get-authors');
 
+      const authors = authorsResponse.data.data;
+      const _book = bookResponse.data.data;
+      const authorsFilter = authors.filter(author => author.id !== _book.author.id);
+      
       dispatch({
         type: UpdateBookTypes.FETCH_UPDATE_BOOK_SUCCESS,
-        payloadBook: updateBookResponse.data.data,
-        payloadAuthors: authorsResponse.data.data
+        payloadBook: bookResponse.data.data,
+        payloadAuthors: authorsFilter
       });
-      alert(`${book.title} обновлен!`)
     }
     catch (e) {
       dispatch({

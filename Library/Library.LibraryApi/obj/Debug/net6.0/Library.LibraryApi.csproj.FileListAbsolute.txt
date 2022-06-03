@@ -31,3 +31,4 @@ D:\Программирование\Projects\Library\Library\Library.LibraryApi\
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.genruntimeconfig.cache
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\ref\Library.LibraryApi.dll
 D:\Программирование\Projects\Library\Library\Library.LibraryApi\obj\Debug\net6.0\Library.LibraryApi.MvcApplicationPartsAssemblyInfo.cs
+D:\Программирование\Projects\Library\Library\Library.LibraryApi\bin\Debug\net6.0\FluentValidation.dll

@@ -41,7 +41,7 @@ public class BooksController : ControllerBase
             var response = new GetAllBooksResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Succsufully",
+                Messages = new List<string>() { "Succsufully" },
                 Data = await _getAllBooks.GetAllBooks(),
             };
 
@@ -61,7 +61,7 @@ public class BooksController : ControllerBase
             return BadRequest(new GetBookByIdResponse()
             {
                 Status = StatusResponse.Error,
-                Messages = "Id is null",
+                Messages = new List<string>() { "Id is null" },
                 Data = null,
             });
         }
@@ -71,7 +71,7 @@ public class BooksController : ControllerBase
             var response = new GetBookByIdResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Succsufully",
+                Messages = new List<string>() { "Succsufully" },
                 Data = await _getBookById.GetBookById(id),
             };
 
@@ -90,7 +90,7 @@ public class BooksController : ControllerBase
         {
             Status = StatusResponse.Success,
             Data = await _searchBooks.SearchBooksAsync(str),
-            Messages = "Succsufully"
+            Messages = new List<string>() { "Succsufully" }
         };
 
         return Ok(response);
@@ -104,7 +104,7 @@ public class BooksController : ControllerBase
             return BadRequest(new CreateBookResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Book created succssfully",
+                Messages = new List<string>() { "Book created succssfully" },
                 Data = null,
             });
         }
@@ -114,7 +114,7 @@ public class BooksController : ControllerBase
             var response = new CreateBookResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Book created succssfully",
+                Messages = new List<string>() { "Book created succssfully" },
                 Data = await _createBook.CreateBookAsync(book),
             };
 
@@ -134,7 +134,7 @@ public class BooksController : ControllerBase
             return BadRequest(new DeleteBookResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Book deleted successfully",
+                Messages = new List<string>() { "Book deleted successfully" },
                 Data = false,
             });
         }
@@ -144,7 +144,7 @@ public class BooksController : ControllerBase
             var response = new DeleteBookResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Book deleted successfully",
+                Messages = new List<string>() { "Book deleted successfully" },
                 Data = await _deleteBook.DeleteBookAsync(id),
             };
 
@@ -164,7 +164,7 @@ public class BooksController : ControllerBase
             return BadRequest(new UpdateBookResponse()
             {
                 Status = StatusResponse.Error,
-                Messages = "Id is empty",
+                Messages = new List<string>() { "Id is empty" },
                 Data = null,
             });
         }
@@ -174,7 +174,7 @@ public class BooksController : ControllerBase
             return BadRequest(new UpdateBookResponse()
             {
                 Status= StatusResponse.Error,
-                Messages = "Book is empty",
+                Messages = new List<string>() { "Book is empty" },
                 Data = null
             });
         }
@@ -184,7 +184,7 @@ public class BooksController : ControllerBase
             var response = new UpdateBookResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Book updated successfully",
+                Messages = new List<string>() { "Book updated successfully" },
                 Data = await _updateBook.UpdateBookAsync(id, bookUpdate),
             };
 
@@ -203,7 +203,7 @@ public class BooksController : ControllerBase
         {
             Status = StatusResponse.Success,
             Data = await _getAuthors.GetAuthors_BookUpdate(),
-            Messages = "Get authors successfully"
+            Messages = new List<string>() { "Get authors successfully" }
         };
 
         return Ok(response);

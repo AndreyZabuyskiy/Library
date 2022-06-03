@@ -93,6 +93,7 @@ internal static class MapModelExtensions
     {
         return new BookUpdateModel()
         {
+            AuthorId = book.AuthorId,
             Title = book.Title,
             Description = book.Description,
             Price = book.Price,

@@ -219,6 +219,13 @@ public class MemoryRepository : IRepository
         {
             var book = _books.FirstOrDefault(b => b.Id == id);
             book.Update(bookUpdate);
+
+            if (bookUpdate.AuthorId != Guid.Empty)
+            {
+                var author = _authors.FirstOrDefault(a => a.Id == bookUpdate.AuthorId);
+                book.Author = author;
+            }
+
             return book.AsBookRead();
         });
     }

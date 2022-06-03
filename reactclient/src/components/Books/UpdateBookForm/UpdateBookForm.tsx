@@ -53,6 +53,14 @@ const UpdateBookForm: React.FC = () => {
     }));
   }
 
+  if(loading){
+    <h1>Идет загрузка...</h1>
+  }
+
+  if(error){
+    <h1>Ошибка...</h1>
+  }
+
   return (
     <div>
       {book && (
@@ -63,19 +71,23 @@ const UpdateBookForm: React.FC = () => {
           </div>
           <br />
           <div className="form-group">
-            <input type="text" value={description} onChange={changeHandlerDescription} className="form-control" placeholder="description" />
+            <input type="text" value={description} onChange={changeHandlerDescription}
+            className="form-control" placeholder="description" />
           </div>
           <br />
           <div className="form-group">
-            <input type="number" value={price} onChange={changeHandlerPrice} className="form-control" placeholder="price" />
+            <input type="number" value={price} onChange={changeHandlerPrice}
+            className="form-control" placeholder="price" />
           </div>
           <br />
           <div className="form-group">
-            <input type="number" value={numberOfPage} onChange={changeHandlerPages} className="form-control" placeholder="pages" />
+            <input type="number" value={numberOfPage} onChange={changeHandlerPages}
+            className="form-control" placeholder="pages" />
           </div>
           <br />
           <div className="form-group">
-            <input type="number" value={yearOfPublication} onChange={changeHandlerYear} className="form-control" placeholder="year of publication" />
+            <input type="number" value={yearOfPublication} onChange={changeHandlerYear}
+            className="form-control" placeholder="year of publication" />
           </div>
           <br />
           <div>
@@ -88,7 +100,21 @@ const UpdateBookForm: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {renderAuthors()}
+              {authors?.map(author => (
+                <tr>
+                  <td scope="row"> { author.firstName } </td>
+                  <td> { author.lastName } </td>
+                  <td>
+                    <div className="form-group">
+                      <button type="button" onClick={() => setAuthorId(author.id)}
+                      className="btn btn-success form-control">
+                        Select
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                ))
+              }
               </tbody>
             </table>
           </div>
@@ -100,32 +126,6 @@ const UpdateBookForm: React.FC = () => {
       )}
     </div>
   );
-
-  function renderAuthors() {
-    if(authors){
-      const authorsFilters = authors?.filter(author => author.id !== book.author.id);
-
-      return (
-        <>
-          {authorsFilters?.map(author => (
-          <tr>
-            <td scope="row"> { author.firstName } </td>
-            <td> { author.lastName } </td>
-            <td>
-              <div className="form-group">
-                <button type="button"
-                onClick={() => setAuthorId(author.id)}
-                className="btn btn-success form-control">
-                  Select
-                </button>
-              </div>
-            </td>
-          </tr>
-        ))}
-        </>
-      );
-    }
-  }
 }
 
 export default UpdateBookForm;

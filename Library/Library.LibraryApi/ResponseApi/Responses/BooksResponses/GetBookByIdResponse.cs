@@ -6,5 +6,5 @@ public class GetBookByIdResponse : IResponseApi<BookViewDto>
 {
     public StatusResponse Status { get; set; }
     public BookViewDto? Data { get; set; }
-    public string Messages { get; set; }
+    public List<string> Messages { get; set; }
 }

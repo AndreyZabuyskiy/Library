@@ -1,7 +1,9 @@
-﻿using Library.BusinessLogic.Dtos;
+﻿using FluentValidation.Results;
+using Library.BusinessLogic.Dtos;
 using Library.BusinessLogic.UseCases;
 using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses.AuthorsResponses;
+using Library.LibraryApi.Validators;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.LibraryApi.Controllers;
@@ -38,7 +40,7 @@ public class AuthorsController : ControllerBase
             var response = new GetAllAuthorsResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Succsufully",
+                Messages = new List<string>() { "Succsufully" },
                 Data = await _getAllAuthors.GetAllAutors(),
             };
 
@@ -58,7 +60,7 @@ public class AuthorsController : ControllerBase
             return BadRequest(new GetAuthorByIdResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Succsufully",
+                Messages = new List<string>() { "Succsufully" },
                 Data = await _getAuthorById.GetAuthorById(id),
             });
         }
@@ -68,7 +70,7 @@ public class AuthorsController : ControllerBase
             var response = new GetAuthorByIdResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Succsufully",
+                Messages = new List<string>() { "Succsufully" },
                 Data = await _getAuthorById.GetAuthorById(id),
             };
 
@@ -87,7 +89,7 @@ public class AuthorsController : ControllerBase
         {
             Status = StatusResponse.Success,
             Data = await _searchAuthors.SearchAuthorsAsync(str),
-            Messages = "Succsufully"
+            Messages = new List<string>() { "Succsufully" }
         };
 
         return Ok(response);
@@ -101,9 +103,30 @@ public class AuthorsController : ControllerBase
             return BadRequest(new AuthorCreateResponse()
             {
                 Status = StatusResponse.Error,
-                Messages = "Author is empty",
+                Messages = new List<string>() { "Author is empty" },
                 Data = null
             });
+        }
+
+        var validator = new CreateAuthorValidator();
+        ValidationResult results = validator.Validate(authorCreate);
+        var errors = new List<string>();
+
+        if (results.IsValid == false)
+        {
+            foreach(ValidationFailure failure in results.Errors)
+            {
+                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
+            }
+
+            var response = new AuthorCreateResponse()
+            {
+                Status = StatusResponse.Error,
+                Messages = errors,
+                Data = null
+            };
+
+            return BadRequest(response);
         }
 
         try
@@ -111,7 +134,7 @@ public class AuthorsController : ControllerBase
             var response = new AuthorCreateResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Author added succsufully",
+                Messages = new List<string>() { "Author added succsufully" },
                 Data = await _authorCreate.CreateAuthorAsync(authorCreate),
             };
 
@@ -131,7 +154,7 @@ public class AuthorsController : ControllerBase
             return BadRequest(new DeleteAuthorResponse()
             {
                 Status = StatusResponse.Error,
-                Messages = "Id is empty",
+                Messages = new List<string>() { "Id is empty" },
                 Data = false,
             });
         }
@@ -141,7 +164,7 @@ public class AuthorsController : ControllerBase
             var response = new DeleteAuthorResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Author deleted succsufully",
+                Messages = new List<string>() { "Author deleted succsufully" },
                 Data = await _authorDelete.DeleteAuthorAsync(id),
             };
 
@@ -161,17 +184,29 @@ public class AuthorsController : ControllerBase
             return BadRequest(new UpdateAuthorResponse()
             {
                 Status = StatusResponse.Error,
-                Messages = "Id is empty",
+                Messages = new List<string>() { "Id is empty" },
                 Data = null,
             });
         }
 
-        if(updateAuthor == null)
+        var validator = new UpdateAuthorValidator();
+        ValidationResult results = validator.Validate(updateAuthor);
+        var errors = new List<string>();
+
+        if (results.IsValid == false)
+        {
+            foreach (ValidationFailure failure in results.Errors)
+            {
+                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
+            }
+        }
+
+        if (updateAuthor == null)
         {
             return BadRequest(new UpdateAuthorResponse()
             {
                 Status = StatusResponse.Error,
-                Messages = "Author is empty",
+                Messages = new List<string>() { "Author is empty" },
                 Data = null
             });
         }
@@ -181,7 +216,7 @@ public class AuthorsController : ControllerBase
             var response = new UpdateAuthorResponse()
             {
                 Status = StatusResponse.Success,
-                Messages = "Author updated succsufully",
+                Messages = new List<string>(){ "Author updated succsufully" },
                 Data = await _authorUpdate.UpdateAuthorAsync(id, updateAuthor),
             };
 
