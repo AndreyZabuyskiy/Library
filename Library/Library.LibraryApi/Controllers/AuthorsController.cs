@@ -121,7 +121,7 @@ public class AuthorsController : ControllerBase
 
             var response = new AuthorCreateResponse()
             {
-                Status = StatusResponse.Error,
+                Status = StatusResponse.NotValid,
                 Messages = errors,
                 Data = null
             };
@@ -183,7 +183,7 @@ public class AuthorsController : ControllerBase
         {
             return BadRequest(new UpdateAuthorResponse()
             {
-                Status = StatusResponse.Error,
+                Status = StatusResponse.NotValid,
                 Messages = new List<string>() { "Id is empty" },
                 Data = null,
             });

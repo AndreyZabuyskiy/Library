@@ -3,5 +3,6 @@
 public enum StatusResponse
 {
     Success,
-    Error
+    Error,
+    NotValid
 }

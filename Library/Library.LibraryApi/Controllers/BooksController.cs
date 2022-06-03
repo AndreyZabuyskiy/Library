@@ -1,7 +1,9 @@
-﻿using Library.BusinessLogic.Dtos;
+﻿using FluentValidation.Results;
+using Library.BusinessLogic.Dtos;
 using Library.BusinessLogic.UseCases;
 using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses.BooksResponses;
+using Library.LibraryApi.Validators;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.LibraryApi.Controllers;
@@ -109,6 +111,27 @@ public class BooksController : ControllerBase
             });
         }
 
+        var validator = new CreateBookValidator();
+        ValidationResult results = validator.Validate(book);
+        var errors = new List<string>();
+
+        if (results.IsValid == false)
+        {
+            foreach (ValidationFailure failure in results.Errors)
+            {
+                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
+            }
+
+            var response = new CreateBookResponse()
+            {
+                Status = StatusResponse.NotValid,
+                Messages = errors,
+                Data = null
+            };
+
+            return BadRequest(response);
+        }
+
         try
         {
             var response = new CreateBookResponse()
@@ -173,10 +196,31 @@ public class BooksController : ControllerBase
         {
             return BadRequest(new UpdateBookResponse()
             {
-                Status= StatusResponse.Error,
+                Status= StatusResponse.NotValid,
                 Messages = new List<string>() { "Book is empty" },
                 Data = null
             });
+        }
+
+        var validator = new UpdateBookValidator();
+        ValidationResult results = validator.Validate(bookUpdate);
+        var errors = new List<string>();
+
+        if (results.IsValid == false)
+        {
+            foreach (ValidationFailure failure in results.Errors)
+            {
+                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
+            }
+
+            var response = new UpdateBookResponse()
+            {
+                Status = StatusResponse.NotValid,
+                Messages = errors,
+                Data = null
+            };
+
+            return BadRequest(response);
         }
 
         try

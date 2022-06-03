@@ -8,10 +8,10 @@ public class UpdateAuthorValidator : AbstractValidator<AuthorUpdateDto>
     public UpdateAuthorValidator()
     {
         RuleFor(p => p.FirstName)
-           .Cascade(CascadeMode.StopOnFirstFailure)
-           .NotEmpty().WithMessage("{PropertyName} is empty")
-           .Length(2, 30).WithMessage("Length ({TotalLength}) of {PropertyName} Invalid")
-           .Must(ValidName).WithMessage("{PropertyName} Contains Invalied Characters");
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotEmpty().WithMessage("{PropertyName} is empty")
+            .Length(2, 30).WithMessage("Length ({TotalLength}) of {PropertyName} Invalid")
+            .Must(ValidName).WithMessage("{PropertyName} Contains Invalied Characters");
 
         RuleFor(p => p.LastName)
             .Cascade(CascadeMode.StopOnFirstFailure)
