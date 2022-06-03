@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Library.BusinessLogic.Dtos;
 using Library.BusinessLogic.UseCases;
+using Library.LibraryApi.Filters;
 using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses.AuthorsResponses;
 using Library.LibraryApi.Validators;
@@ -96,6 +97,7 @@ public class AuthorsController : ControllerBase
     }
 
     [HttpPost]
+    [AuthorCreateValidationFilter]
     public async Task<ActionResult<AuthorCreateResponse>> CreateAuthorAsync(AuthorCreateDto authorCreate)
     {
         if(authorCreate == null)
@@ -106,27 +108,6 @@ public class AuthorsController : ControllerBase
                 Messages = new List<string>() { "Author is empty" },
                 Data = null
             });
-        }
-
-        var validator = new CreateAuthorValidator();
-        ValidationResult results = validator.Validate(authorCreate);
-        var errors = new List<string>();
-
-        if (results.IsValid == false)
-        {
-            foreach(ValidationFailure failure in results.Errors)
-            {
-                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
-            }
-
-            var response = new AuthorCreateResponse()
-            {
-                Status = StatusResponse.NotValid,
-                Messages = errors,
-                Data = null
-            };
-
-            return BadRequest(response);
         }
 
         try
@@ -177,6 +158,7 @@ public class AuthorsController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [AuthorUpdateValidationFilter]
     public async Task<ActionResult<UpdateAuthorResponse>> UpdateAuthorAsync(Guid id, AuthorUpdateDto updateAuthor)
     {
         if(id == Guid.Empty)
@@ -186,28 +168,6 @@ public class AuthorsController : ControllerBase
                 Status = StatusResponse.NotValid,
                 Messages = new List<string>() { "Id is empty" },
                 Data = null,
-            });
-        }
-
-        var validator = new UpdateAuthorValidator();
-        ValidationResult results = validator.Validate(updateAuthor);
-        var errors = new List<string>();
-
-        if (results.IsValid == false)
-        {
-            foreach (ValidationFailure failure in results.Errors)
-            {
-                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
-            }
-        }
-
-        if (updateAuthor == null)
-        {
-            return BadRequest(new UpdateAuthorResponse()
-            {
-                Status = StatusResponse.Error,
-                Messages = new List<string>() { "Author is empty" },
-                Data = null
             });
         }
 

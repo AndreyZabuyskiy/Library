@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Library.BusinessLogic.Dtos;
 using Library.BusinessLogic.UseCases;
+using Library.LibraryApi.Filters;
 using Library.LibraryApi.ResponseApi;
 using Library.LibraryApi.ResponseApi.Responses.BooksResponses;
 using Library.LibraryApi.Validators;
@@ -99,6 +100,7 @@ public class BooksController : ControllerBase
     }
     
     [HttpPost]
+    [BookCreateValidationFilter]
     public async Task<ActionResult<CreateBookResponse>> CreateBookAsync(BookCreateDto book)
     {
         if(book == null)
@@ -109,27 +111,6 @@ public class BooksController : ControllerBase
                 Messages = new List<string>() { "Book created succssfully" },
                 Data = null,
             });
-        }
-
-        var validator = new CreateBookValidator();
-        ValidationResult results = validator.Validate(book);
-        var errors = new List<string>();
-
-        if (results.IsValid == false)
-        {
-            foreach (ValidationFailure failure in results.Errors)
-            {
-                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
-            }
-
-            var response = new CreateBookResponse()
-            {
-                Status = StatusResponse.NotValid,
-                Messages = errors,
-                Data = null
-            };
-
-            return BadRequest(response);
         }
 
         try
@@ -180,6 +161,7 @@ public class BooksController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [BookUpdateValidationFilter]
     public async Task<ActionResult<UpdateBookResponse>> UpdateBookAsync(Guid id, BookUpdateDto bookUpdate)
     {
         if(id == Guid.Empty)
@@ -200,27 +182,6 @@ public class BooksController : ControllerBase
                 Messages = new List<string>() { "Book is empty" },
                 Data = null
             });
-        }
-
-        var validator = new UpdateBookValidator();
-        ValidationResult results = validator.Validate(bookUpdate);
-        var errors = new List<string>();
-
-        if (results.IsValid == false)
-        {
-            foreach (ValidationFailure failure in results.Errors)
-            {
-                errors.Add($"{ failure.PropertyName }: { failure.ErrorMessage }");
-            }
-
-            var response = new UpdateBookResponse()
-            {
-                Status = StatusResponse.NotValid,
-                Messages = errors,
-                Data = null
-            };
-
-            return BadRequest(response);
         }
 
         try
