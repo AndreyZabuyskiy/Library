@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as yup from 'yup';
-import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchCreateAuthor } from "../../../redux/action-creators/createAuthor";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
