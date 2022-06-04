@@ -91,36 +91,16 @@ const UpdateBookForm: React.FC = () => {
           </div>
           <br />
           <div>
-            <table className="table table-bordered border-dark">
-              <thead>
-                <tr>
-                  <th scope='col'>FirstName</th>
-                  <th scope='col'>LastName</th>
-                  <th scope='col'>Operation</th>
-                </tr>
-              </thead>
-              <tbody>
-              {authors?.map(author => (
-                <tr>
-                  <td scope="row"> { author.firstName } </td>
-                  <td> { author.lastName } </td>
-                  <td>
-                    <div className="form-group">
-                      <button type="button" onClick={() => setAuthorId(author.id)}
-                      className="btn btn-success form-control">
-                        Select
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                ))
-              }
-              </tbody>
-            </table>
+            {authors?.map(author => (
+              <p>{author.id}: {author.firstName} {author.lastName}</p>
+            ))}
           </div>
           <br />
           <div className="form-group">
-            <button type="button" onClick={clickHandlerUpdate} className="btn btn-success form-control">Update</button>
+            <button 
+            type="button"
+            onClick={clickHandlerUpdate}
+            className="btn btn-success form-control">Update</button>
           </div>
         </div>
       )}
