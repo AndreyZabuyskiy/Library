@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Formik } from "formik";
+import * as yup from 'yup';
 import { useTypesSelector } from "../../../hooks/useTypeSelector";
 import { fetchUpdateBook, loadBook } from "../../../redux/action-creators/updateBook";
 
@@ -11,99 +13,154 @@ const UpdateBookForm: React.FC = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [price, setPrice] = useState<number>();
-  const [numberOfPage, setNumberOfPage] = useState<number>();
-  const [yearOfPublication, setYearOfPublication] = useState<number>();
-  const [authorId, setAuthorId] = useState<any>();
-
   useEffect(() => {
     dispatch(loadBook(id))
   }, [id]);
 
-  const changeHandlerTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  }
-
-  const changeHandlerDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(e.target.value);
-  }
-
-  const changeHandlerPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(Number(e.target.value));
-  }
-
-  const changeHandlerPages = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNumberOfPage(Number(e.target.value));
-  }
-
-  const changeHandlerYear = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setYearOfPublication(Number(e.target.value));
-  }
-
-  const clickHandlerUpdate = (e: React.MouseEvent) => {
-    dispatch(fetchUpdateBook(book.id, {
-      title,
-      description,
-      price,
-      numberOfPage,
-      yearOfPublication,
-      authorId
-    }));
-  }
-
-  if(loading){
-    <h1>Идет загрузка...</h1>
-  }
-
-  if(error){
-    <h1>Ошибка...</h1>
-  }
+  const validationSchema = yup.object().shape({
+    title: yup.string().required('Обязательно'),
+    description: yup.string(),
+    price: yup.number(),
+    numberOfPage: yup.number(),
+    yearOfPublication: yup.number(),
+    authorId: yup.string().required('Обязательно')
+  });
 
   return (
-    <div>
-      {book && (
-        <div className="container">
-          <h1>{ book.title }</h1>
-          <div className="form-group">
-            <input type="text" value={title} onChange={changeHandlerTitle} className="form-control" placeholder="title" />
-          </div>
-          <br />
-          <div className="form-group">
-            <input type="text" value={description} onChange={changeHandlerDescription}
-            className="form-control" placeholder="description" />
-          </div>
-          <br />
-          <div className="form-group">
-            <input type="number" value={price} onChange={changeHandlerPrice}
-            className="form-control" placeholder="price" />
-          </div>
-          <br />
-          <div className="form-group">
-            <input type="number" value={numberOfPage} onChange={changeHandlerPages}
-            className="form-control" placeholder="pages" />
-          </div>
-          <br />
-          <div className="form-group">
-            <input type="number" value={yearOfPublication} onChange={changeHandlerYear}
-            className="form-control" placeholder="year of publication" />
-          </div>
-          <br />
-          <div>
+    <div className="container">
+      <Formik 
+        initialValues={{
+          title: "",
+          description: "",
+          price: 0,
+          numberOfPage: 0,
+          yearOfPublication: 0,
+          authorId: ""
+        }}
+        validateOnBlur
+        onSubmit={(values) => {
+          const title = values.title;
+          const description = values.description;
+          const price = values.price;
+          const numberOfPage = values.numberOfPage;
+          const yearOfPublication = values.yearOfPublication;
+          const authorId = values.authorId;
+
+          dispatch(fetchUpdateBook(book.id, {
+            title,
+            description,
+            price,
+            numberOfPage,
+            yearOfPublication,
+            authorId
+          }));
+        }}
+        validationSchema={validationSchema}
+      >
+        {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+          <div className="container">
+            <div className="form-group">
+              <input
+              type={"text"}
+              name={`title`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.title}
+              className="form-control"
+              placeholder="title"
+              />
+              {touched.title && errors.title && <p className={"error"}>{errors.title}</p>}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <input
+              type={"text"}
+              name={`description`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.description}
+              className="form-control"
+              placeholder="description"
+              />
+              {touched.description && errors.description && <p className={"error"}>{errors.description}</p>}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <input
+              type={"number"}
+              name={`price`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.price}
+              className="form-control"
+              placeholder="price"
+              />
+              {touched.price && errors.price && <p className={"error"}>{errors.price}</p>}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <input
+              type={"number"}
+              name={`numberOfPage`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.numberOfPage}
+              className="form-control"
+              placeholder="number of page"
+              />
+              {touched.numberOfPage && errors.numberOfPage && <p className={"error"}>{errors.numberOfPage}</p>}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <input
+              type={"number"}
+              name={`yearOfPublication`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.yearOfPublication}
+              className="form-control"
+              placeholder="year of publication"
+              />
+              {touched.yearOfPublication && errors.yearOfPublication && <p className={"error"}>
+              {errors.yearOfPublication}</p>}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <input
+              type={"text"}
+              name={`authorId`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.authorId}
+              className="form-control"
+              placeholder="author id"
+              />
+              {touched.authorId && errors.authorId && <p className={"error"}>{errors.authorId}</p>}
+            </div>
+            <br />
+
+            <div>
             {authors?.map(author => (
               <p>{author.id}: {author.firstName} {author.lastName}</p>
             ))}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <button
+              type="submit"
+              className="btn btn-success form-control"
+              disabled={!isValid && !dirty}
+              onClick={handleSubmit}> Create </button>
+            </div>
           </div>
-          <br />
-          <div className="form-group">
-            <button 
-            type="button"
-            onClick={clickHandlerUpdate}
-            className="btn btn-success form-control">Update</button>
-          </div>
-        </div>
-      )}
+        )}
+      </Formik>
     </div>
   );
 }
