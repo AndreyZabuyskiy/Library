@@ -85,7 +85,8 @@ internal static class MapModelExtensions
         return new AuthorUpdateModel
         {
             FirstName = author.FirstName,
-            LastName = author.LastName
+            LastName = author.LastName,
+            Description = author.Description
         };
     }
 

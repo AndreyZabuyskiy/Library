@@ -100,7 +100,7 @@ public class AuthorsController : ControllerBase
     [AuthorCreateValidationFilter]
     public async Task<ActionResult<AuthorCreateResponse>> CreateAuthorAsync(AuthorCreateDto authorCreate)
     {
-        if(authorCreate == null)
+        if (authorCreate == null)
         {
             return BadRequest(new AuthorCreateResponse()
             {

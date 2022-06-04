@@ -39,6 +39,7 @@ internal static class MapEntitesExtensions
     {
         author.FirstName = authorUpdate.FirstName;
         author.LastName = authorUpdate.LastName;
+        author.Description = authorUpdate.Description;
     }
 
     public static void Update(this Book book, BookUpdateModel bookUpdate)

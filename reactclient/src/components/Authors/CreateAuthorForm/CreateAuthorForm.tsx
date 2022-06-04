@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
-import * as yup from 'yup';
-import { fetchCreateAuthor } from "../../../redux/action-creators/createAuthor";
+import * as yup from 'yup';import { fetchCreateAuthor } from "../../../redux/action-creators/createAuthor";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -44,7 +43,7 @@ const CreateAuthorForm: React.FC = () => {
         }}
         validationSchema={validationsSchema}
       >
-        {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+        {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
           <div className="container">
             <div className="form-group">
               <input
